@@ -1,0 +1,22 @@
+[project]
+name = "agent_evals"
+version = "0.1.0"
+description = "Agentic framework evaluator for common libraries"
+authors = [{ name = "Jeremiah" }]
+dependencies = [
+    "datasets",
+    "python-dotenv",
+    "openai",
+    "pydantic-ai",
+    "langchain",
+    "langchain-openai",
+    "autogen-agentchat",
+    "autogen-ext[openai,azure]",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
