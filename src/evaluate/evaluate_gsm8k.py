@@ -2,6 +2,7 @@ from datasets import load_dataset
 from typing import List, Dict
 import json
 import argparse
+import re
 from tqdm import tqdm
 
 from agents.pydantic_base_agent import PydanticAgent
@@ -11,20 +12,33 @@ from agents.autogen_base_agent import AutoGenAgent
 from agents.direct_call import BaselineLLMAgent
 
 
+def extract_gsm8k_answer(answer_text: str) -> str:
+    """
+    Extracts the final numeric answer from GSM8K-style '<<...=ANSWER>>'.
+    Returns the last number found in the double angle brackets.
+    """
+    match = re.findall(r"<<.*?=(\-?\d+.*?)>>", answer_text)
+    return match[-1].strip() if match else "N/A"
+
+
 def evaluate_agent(agent, dataset, n_problems=10) -> List[Dict]:
     results = []
     for i, item in enumerate(tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)):
         if i >= n_problems:
             break
 
-        problem = item["Problem"]
-        solution = item["Answer"]
+        problem = item["question"]
+        solution = extract_gsm8k_answer(item["answer"])
 
-        response = agent.solve(problem)
-        is_correct = str(response).strip() == str(solution).strip()
+        try:
+            response = agent.solve(problem)
+            is_correct = str(response).strip() == str(solution).strip()
+        except Exception as e:
+            response = f"ERROR: {e}"
+            is_correct = False
 
         results.append({
-            "id": item["ID"],
+            "id": f"gsm8k-{i+1}",
             "problem": problem,
             "solution": solution,
             "response": response,
@@ -39,8 +53,8 @@ def main():
     parser.add_argument("--n", type=int, default=30, help="Number of problems to evaluate")
     args = parser.parse_args()
 
-    print("Loading AIME dataset...")
-    dataset = load_dataset("Maxwell-Jia/AIME_2024", split="train")
+    print("Loading GSM8K dataset...")
+    dataset = load_dataset("gsm8k", "main", split="train")
 
     agents = {
         "baseline": BaselineLLMAgent(),

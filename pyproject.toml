@@ -4,14 +4,22 @@ version = "0.1.0"
 description = "Agentic framework evaluator for common libraries"
 authors = [{ name = "Jeremiah" }]
 dependencies = [
+    # Core LLM support
+    "openai>=1.14.3,<2.0.0",
+    "langchain",
+    "langchain-core",
+    "langchain-openai",
+    "pydantic>=2.6.4,<3.0.0",
+    "pydantic-ai",
+
+    # Evaluation / dataset
     "datasets",
     "python-dotenv",
-    "openai",
-    "pydantic-ai",
-    "langchain",
-    "langchain-openai",
-    "autogen-agentchat",
-    "autogen-ext[openai,azure]",
+    "crewai",
+
+    # Autogen agent (if used)
+    "pyautogen",
+    "autogen-ext[openai,azure]"
 ]
 
 [tool.setuptools.packages.find]

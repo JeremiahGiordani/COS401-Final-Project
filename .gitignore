@@ -1,4 +1,5 @@
 env/
+crew-env/
 .env
 **/__pycache__/
 src/*.egg*
