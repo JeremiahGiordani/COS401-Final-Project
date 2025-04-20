@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unicorn Showcase</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #1e1e3f; }
+    .sky { position: absolute; width: 100%; height: 100%; background: linear-gradient(to top, #1e1e3f, #7f4cc2); overflow: hidden; }
+    .moon { position: absolute; width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,224,0.8); top: 10%; right: 10%; filter: blur(8px); }
+    .scene { position: absolute; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .unicorn { position: relative; width: 300px; height: 200px; }
+    .unicorn .body { position: absolute; width: 200px; height: 100px; background: white; border-radius: 100px; top: 80px; left: 50px; z-index: 1; }
+    .unicorn .leg { position: absolute; width: 15px; height: 60px; background: white; border-radius: 10px; bottom: 0; z-index: 1; }
+    .unicorn .leg1 { left: 70px; }
+    .unicorn .leg2 { left: 110px; }
+    .unicorn .leg3 { left: 150px; }
+    .unicorn .leg4 { left: 190px; }
+    .unicorn .tail { position: absolute; top: 100px; left: 230px; width: 10px; height: 60px; z-index: 2; }
+    .unicorn .tail span { position: absolute; width: 60px; height: 10px; border-radius: 50%; animation: tailAnim 3s ease-in-out infinite; transform-origin: left center; }
+    .unicorn .tail span:nth-child(1) { top: 0; left: -50px; background: #ff5c5c; animation-delay: 0s; }
+    .unicorn .tail span:nth-child(2) { top: 10px; left: -55px; background: #ffb56b; animation-delay: 0.2s; }
+    .unicorn .tail span:nth-child(3) { top: 20px; left: -50px; background: #fff14c; animation-delay: 0.4s; }
+    .unicorn .tail span:nth-child(4) { top: 30px; left: -45px; background: #6be089; animation-delay: 0.6s; }
+    .unicorn .tail span:nth-child(5) { top: 40px; left: -50px; background: #5cccff; animation-delay: 0.8s; }
+    .unicorn .tail span:nth-child(6) { top: 50px; left: -55px; background: #bf5cff; animation-delay: 1s; }
+    @keyframes tailAnim { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-15deg); } }
+    .unicorn .head { position: absolute; width: 80px; height: 80px; background: white; border-radius: 50%; top: 40px; left: 20px; z-index: 3; }
+    .unicorn .horn { position: absolute; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 60px solid gold; transform: rotate(180deg); top: 0; left: 45px; z-index: 6; }
+    .unicorn .ear { position: absolute; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 20px solid white; top: 10px; z-index: 3; }
+    .unicorn .ear.left { left: 25px; transform: rotate(-20deg); }
+    .unicorn .ear.right { left: 50px; transform: rotate(20deg); }
+    .unicorn .eye { position: absolute; width: 8px; height: 8px; background: black; border-radius: 50%; top: 60px; left: 50px; z-index: 4; }
+    .unicorn .mane { position: absolute; top: 50px; left: 30px; z-index: 5; }
+    .unicorn .mane span { position: absolute; width: 20px; height: 60px; border-radius: 20px 20px 0 0; transform-origin: bottom center; animation: maneAnim 3s ease-in-out infinite; }
+    .unicorn .mane span:nth-child(1) { left: 0; background: #ff5c5c; animation-delay: 0s; }
+    .unicorn .mane span:nth-child(2) { left: 15px; background: #ffb56b; animation-delay: 0.2s; }
+    .unicorn .mane span:nth-child(3) { left: 30px; background: #fff14c; animation-delay: 0.4s; }
+    .unicorn .mane span:nth-child(4) { left: 45px; background: #6be089; animation-delay: 0.6s; }
+    .unicorn .mane span:nth-child(5) { left: 60px; background: #5cccff; animation-delay: 0.8s; }
+    .unicorn .mane span:nth-child(6) { left: 75px; background: #bf5cff; animation-delay: 1s; }
+    @keyframes maneAnim { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-20deg); } }
+    .star { position: absolute; background: white; border-radius: 50%; opacity: 0; }
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <div class="moon"></div>
+  </div>
+  <div class="scene">
+    <div class="unicorn">
+      <div class="body"></div>
+      <div class="leg leg1"></div>
+      <div class="leg leg2"></div>
+      <div class="leg leg3"></div>
+      <div class="leg leg4"></div>
+      <div class="tail">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="head"></div>
+      <div class="horn"></div>
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+      <div class="eye"></div>
+      <div class="mane">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const sky = document.querySelector('.sky');
+    for (let i = 0; i < 80; i++) {
+      let star = document.createElement('div');
+      let size = Math.random() * 3 + 1;
+      star.classList.add('star');
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      sky.appendChild(star);
+      let dur = Math.random() * 2 + 1;
+      star.animate([
+        { opacity: 0 },
+        { opacity: 1 },
+        { opacity: 0 }
+      ], { duration: dur * 1000, iterations: Infinity, delay: Math.random() * 2000 });
+    }
+  </script>
+</body>
+</html>

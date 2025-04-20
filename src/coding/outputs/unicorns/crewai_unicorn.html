@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom right, #a18cd1 0%, #fbc2eb 100%);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .unicorn {
+            --size: 200px;
+            position: relative;
+            width: var(--size);
+            height: var(--size);
+        }
+        .unicorn .body {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 70%;
+            background: white;
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 4px 2px rgba(0, 0, 0, 0.1);
+        }
+        .unicorn .head {
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 50%;
+            background: white;
+            border-radius: 50%;
+        }
+        .unicorn .horn {
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10%;
+            height: 50%;
+            background-color: gold;
+            border-radius: 50% 50% 0 0;
+        }
+        .unicorn .eye {
+            position: absolute;
+            top: 20%;
+            left: 35%;
+            width: 12%;
+            height: 12%;
+            background: black;
+            border-radius: 50%;
+        }
+        .unicorn .mane {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 20%;
+            height: 100%;
+            background: linear-gradient(to bottom, pink, violet, lightblue);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        .unicorn .tail {
+            position: absolute;
+            bottom: 15%;
+            right: 0;
+            width: 30%;
+            height: 50%;
+            background: linear-gradient(to bottom right, pink, violet, lightblue);
+            border-radius: 50%;
+        }
+        .unicorn .legs {
+            position: absolute;
+            bottom: -20%;
+            left: 50%;
+            width: 60%;
+            height: 30%;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .unicorn .legs::before, .unicorn .legs::after {
+            content: '';
+            display: block;
+            width: 20%;
+            height: 100%;
+            background: white;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn">
+        <div class="mane"></div>
+        <div class="body"></div>
+        <div class="head">
+            <div class="horn"></div>
+            <div class="eye"></div>
+        </div>
+        <div class="tail"></div>
+        <div class="legs"></div>
+    </div>
+</body>
+</html>

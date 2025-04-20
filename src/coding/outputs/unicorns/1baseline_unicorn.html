@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #e0f7fa;
+            margin: 0;
+        }
+        #unicorn {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .body {
+            position: absolute;
+            width: 120px;
+            height: 70px;
+            background: white;
+            border-radius: 70px;
+            top: 50px;
+            left: 40px;
+        }
+        .leg {
+            position: absolute;
+            width: 15px;
+            height: 50px;
+            background: white;
+            border-radius: 10px;
+            bottom: 0;
+        }
+        .leg1 { left: 50px; }
+        .leg2 { right: 50px; }
+        .head {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            top: 10px;
+            left: 0;
+        }
+        .eye {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: black;
+            border-radius: 50%;
+            top: 30px;
+            left: 20px;
+        }
+        .horn {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 40px solid gold;
+            top: -30px;
+            left: 30px;
+        }
+        .tail {
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            top: 60px;
+            left: 160px;
+        }
+        .tail div {
+            position: absolute;
+            width: 15px;
+            height: 20px;
+            background: #9c27b0;
+            border-radius: 50%;
+        }
+        .tail1 { transform: rotate(20deg); }
+        .tail2 { transform: rotate(-20deg); left: 15px; }
+        .tail3 { transform: rotate(0deg); left: 30px; }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setInterval(() => {
+                const tail = document.querySelector('.tail');
+                tail.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
+            }, 400);
+        });
+    </script>
+</head>
+<body>
+    <div id="unicorn">
+        <div class="body"></div>
+        <div class="leg leg1"></div>
+        <div class="leg leg2"></div>
+        <div class="head">
+            <div class="eye"></div>
+            <div class="horn"></div>
+        </div>
+        <div class="tail">
+            <div class="tail1"></div>
+            <div class="tail2"></div>
+            <div class="tail3"></div>
+        </div>
+    </div>
+</body>
+</html>

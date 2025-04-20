@@ -1,0 +1,98 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unicorn</title>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+}
+.unicorn {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+.unicorn-body {
+  background: #fff;
+  border-radius: 100px 100px 0 0;
+  width: 100px;
+  height: 150px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+.unicorn-head {
+  background: #fff;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 10px;
+  left: 30px;
+}
+.unicorn-horn {
+  background: #ff69b4;
+  width: 20px;
+  height: 50px;
+  position: absolute;
+  top: -40px;
+  left: 40px;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.unicorn-eyes {
+  display: flex;
+  position: absolute;
+  top: 30px;
+  left: 15px;
+}
+.unicorn-eye {
+  background: #000;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+}
+.unicorn-leg {
+  background: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 70px;
+  position: absolute;
+}
+.unicorn-leg:nth-child(1) {top: 180px; left: 50px;}
+.unicorn-leg:nth-child(2) {top: 180px; left: 130px;}
+.unicorn-tail {
+  background: linear-gradient(135deg, #eacda3, #d6ae7b);
+  border-radius: 50%;
+  width: 60px;
+  height: 120px;
+  position: absolute;
+  top: 100px;
+  left: 0;
+}
+</style>
+</head>
+<body>
+<div class="unicorn">
+  <div class="unicorn-body"></div>
+  <div class="unicorn-head">
+    <div class="unicorn-horn"></div>
+    <div class="unicorn-eyes">
+      <div class="unicorn-eye"></div>
+      <div class="unicorn-eye"></div>
+    </div>
+  </div>
+  <div class="unicorn-leg"></div>
+  <div class="unicorn-leg"></div>
+  <div class="unicorn-tail"></div>
+</div>
+</body>
+</html>
+```

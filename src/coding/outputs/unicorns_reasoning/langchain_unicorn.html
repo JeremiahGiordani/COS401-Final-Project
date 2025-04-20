@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Unicorn</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            overflow: hidden;
+        }
+        .unicorn-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .unicorn {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .head {
+            position: absolute;
+            top: 20%;
+            left: 25%;
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .horn {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 10px;
+            height: 30px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            transform: translateX(-50%) rotate(45deg);
+            border-radius: 5px;
+        }
+        .eye {
+            position: absolute;
+            top: 20px;
+            left: 15px;
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+        }
+        .mane {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: flow 3s infinite;
+        }
+        .body {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            width: 100px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50px 50px 0 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .leg {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 30px;
+            background: #fff;
+            border-radius: 5px;
+        }
+        .front-left { left: 20px; }
+        .front-right { left: 40px; }
+        .back-left { left: 60px; }
+        .back-right { left: 80px; }
+        .tail {
+            position: absolute;
+            bottom: 0;
+            right: -20px;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border-radius: 50%;
+            animation: flow 3s infinite;
+        }
+        .hooves {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+        .hoof {
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+        }
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: sparkle 1s infinite;
+        }
+        @keyframes flow {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            50% { transform: translateX(-50%) rotate(10deg); }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn-container">
+        <div class="unicorn">
+            <div class="head">
+                <div class="horn"></div>
+                <div class="eye"></div>
+                <div class="mane"></div>
+            </div>
+            <div class="body">
+                <div class="leg front-left"></div>
+                <div class="leg front-right"></div>
+                <div class="leg back-left"></div>
+                <div class="leg back-right"></div>
+                <div class="tail"></div>
+            </div>
+            <div class="hooves">
+                <div class="hoof front-left"></div>
+                <div class="hoof front-right"></div>
+                <div class="hoof back-left"></div>
+                <div class="hoof back-right"></div>
+            </div>
+        </div>
+        <div class="sparkles"></div>
+    </div>
+    <script>
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.top = `${Math.random() * 100}%`;
+            sparkle.style.left = `${Math.random() * 100}%`;
+            sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            document.querySelector('.sparkles').appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 2000);
+        }
+        setInterval(createSparkle, 300);
+    </script>
+</body>
+</html>

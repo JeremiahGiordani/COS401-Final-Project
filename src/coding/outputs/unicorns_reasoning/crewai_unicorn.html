@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magical Unicorn</title>
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e0e0e0;
+  margin: 0;
+}
+
+.unicorn-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.unicorn {
+  position: relative;
+}
+
+.unicorn-body, .unicorn-head, .unicorn-leg, .unicorn-mane, .unicorn-tail {
+  position: absolute;
+}
+
+.unicorn-body {
+  width: 200px;
+  height: 120px;
+  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+  border-radius: 100px;
+  left: 100px;
+  top: 100px;
+}
+
+.unicorn-head {
+  width: 100px;
+  height: 80px;
+  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+  border-radius: 50px;
+  left: 120px;
+  top: 60px;
+}
+
+.unicorn-horn {
+  width: 10px;
+  height: 60px;
+  background: linear-gradient(to bottom, #ff00ff, #00ffff, #ffff00);
+  position: absolute;
+  left: 140px;
+  top: 10px;
+  transform: rotate(-20deg);
+  filter: blur(1px);
+}
+
+.unicorn-eye {
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle, #000000 50%, #ffffff 50%);
+  border-radius: 50%;
+}
+
+.unicorn-eye.left {
+  position: absolute;
+  left: 130px;
+  top: 75px;
+}
+
+.unicorn-eye.right {
+  position: absolute;
+  left: 155px;
+  top: 75px;
+}
+
+.unicorn-leg {
+  width: 30px;
+  height: 90px;
+  background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+  border-radius: 20px;
+}
+
+.unicorn-leg.front-left {
+  left: 130px;
+  top: 220px;
+}
+
+.unicorn-leg.front-right {
+  left: 160px;
+  top: 220px;
+}
+
+.unicorn-leg.back-left {
+  left: 180px;
+  top: 220px;
+}
+
+.unicorn-leg.back-right {
+  left: 210px;
+  top: 220px;
+}
+
+.unicorn-mane {
+  width: 60px;
+  height: 150px;
+  background: linear-gradient(to bottom, #ff0000, #ff9400, #ffff00, #94ff00, #00ff00);
+  border-radius: 30px;
+  left: 120px;
+  top: 40px;
+  filter: blur(2px);
+}
+
+.unicorn-tail {
+  width: 60px;
+  height: 150px;
+  background: linear-gradient(to bottom, #ff0000, #ff9400, #ffff00, #94ff00, #00ff00);
+  border-radius: 30px;
+  left: 250px;
+  top: 120px;
+  filter: blur(2px);
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 100%;
+  }
+}
+
+.unicorn-horn {
+  animation: sparkle 3s linear infinite;
+}
+
+@keyframes blink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+.unicorn-eye.left, .unicorn-eye.right {
+  animation: blink 5s infinite;
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+.unicorn-mane, .unicorn-tail {
+  animation: sway 3s ease-in-out infinite;
+}
+</style>
+</head>
+<body>
+<div class="unicorn-container">
+  <div class="unicorn">
+    <div class="unicorn-body"></div>
+    <div class="unicorn-head"></div>
+    <div class="unicorn-horn"></div>
+    <div class="unicorn-eye left"></div>
+    <div class="unicorn-eye right"></div>
+    <div class="unicorn-leg front-left"></div>
+    <div class="unicorn-leg front-right"></div>
+    <div class="unicorn-leg back-left"></div>
+    <div class="unicorn-leg back-right"></div>
+    <div class="unicorn-mane"></div>
+    <div class="unicorn-tail"></div>
+  </div>
+</div>
+<script>
+function sparkleHorn() {
+  const horn = document.querySelector('.unicorn-horn');
+  setInterval(() => {
+    horn.style.backgroundPosition = `${Math.random() * 100}%`;
+  }, 3000);
+}
+sparkleHorn();
+
+function animateManeAndTail() {
+  const mane = document.querySelector('.unicorn-mane');
+  const tail = document.querySelector('.unicorn-tail');
+  function sway() {
+    requestAnimationFrame(() => {
+      mane.style.transform = `rotate(${Math.sin(Date.now() / 1000) * 10}deg)`;
+      tail.style.transform = `rotate(${Math.sin(Date.now() / 1000 + Math.PI) * 10}deg)`;
+      requestAnimationFrame(sway);
+    });
+  }
+  sway();
+}
+animateManeAndTail();
+
+function blinkEyes() {
+  const eyes = document.querySelectorAll('.unicorn-eye');
+  function blink() {
+    eyes.forEach(eye => eye.style.transform = 'scaleY(0.1)');
+    setTimeout(() => {
+      eyes.forEach(eye => eye.style.transform = 'scaleY(1)');
+    }, 100);
+  }
+  setInterval(blink, Math.random() * 5000 + 2000);
+}
+blinkEyes();
+</script>
+</body>
+</html>

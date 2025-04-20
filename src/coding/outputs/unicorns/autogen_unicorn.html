@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unicorn</title>
+<style>
+  body, html { margin: 0; padding: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: #e0f7fa; }
+  .unicorn {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+  .body { 
+    background: #fff; 
+    border-radius: 50px; 
+    width: 100px; 
+    height: 100px; 
+    position: absolute; 
+    top: 50px; 
+    left: 50px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  .head {
+    background: #fff;
+    border-radius: 50px;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    left: 35px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  .eye { 
+    background: #000; 
+    border-radius: 50%; 
+    width: 10px; 
+    height: 10px; 
+    position: absolute; 
+    top: 25px; 
+    left: 20px; 
+  }
+  .horn {
+    width: 0; 
+    height: 0; 
+    border-left: 15px solid transparent; 
+    border-right: 15px solid transparent; 
+    border-bottom: 25px solid #ffeb3b; 
+    position: absolute; 
+    top: -20px; 
+    left: 27px;
+  }
+  .mane::before, .mane::after {
+    content: ''; 
+    position: absolute; 
+    width: 15px; 
+    height: 50px; 
+    border-radius: 50%;
+    background: #ffeb3b;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  .mane::before {
+    left: 10px; 
+    top: 40px;
+    background: linear-gradient(45deg, #ffeb3b, #ff4081);
+  }
+  .mane::after {
+    left: 60px;
+    top: 30px;
+    background: linear-gradient(45deg, #ff4081, #3f51b5);
+  }
+  .tail {
+    position: absolute;
+    width: 10px;
+    height: 50px;
+    background: linear-gradient(45deg, #3f51b5, #ff4081);
+    border-radius: 50%;
+    top: 120px;
+    left: 90px;
+  }
+  .leg { 
+    background: #fff; 
+    width: 15px; 
+    height: 50px; 
+    position: absolute; 
+    top: 100px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  .leg::before { 
+    content: ''; 
+    width: 15px; 
+    height: 10px; 
+    background: #000; 
+    position: absolute; 
+    bottom: 0; 
+    border-radius: 5px;
+  }
+  .leg1 { left: 55px; }
+  .leg2 { left: 130px; }
+</style>
+</head>
+<body>
+  <div class="unicorn">
+    <div class="body"></div>
+    <div class="head">
+      <div class="eye"></div>
+      <div class="horn"></div>
+      <div class="mane"></div>
+    </div>
+    <div class="tail"></div>
+    <div class="leg leg1"></div>
+    <div class="leg leg2"></div>
+  </div>
+</body>
+</html>

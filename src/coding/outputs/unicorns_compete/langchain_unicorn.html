@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Unicorn</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            overflow: hidden;
+        }
+        .unicorn {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            animation: float 3s ease-in-out infinite;
+        }
+        .unicorn .body {
+            position: absolute;
+            width: 100px;
+            height: 60px;
+            background: white;
+            border-radius: 50% 50% 0 0;
+            top: 50px;
+            left: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .unicorn .head {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            top: 10px;
+            left: 90px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .unicorn .horn {
+            position: absolute;
+            width: 10px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            top: -30px;
+            left: 115px;
+            transform: rotate(45deg);
+            border-radius: 0 0 10px 10px;
+        }
+        .unicorn .eye {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: black;
+            border-radius: 50%;
+            top: 25px;
+            left: 125px;
+        }
+        .unicorn .mane {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            top: 10px;
+            left: 70px;
+            border-radius: 50%;
+            transform: rotate(45deg);
+        }
+        .unicorn .tail {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            top: 70px;
+            left: 30px;
+            border-radius: 50%;
+            transform: rotate(-45deg);
+        }
+        .unicorn .legs {
+            position: absolute;
+            width: 10px;
+            height: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .unicorn .legs.front-left {
+            top: 100px;
+            left: 60px;
+        }
+        .unicorn .legs.front-right {
+            top: 100px;
+            left: 80px;
+        }
+        .unicorn .legs.back-left {
+            top: 100px;
+            left: 40px;
+        }
+        .unicorn .legs.back-right {
+            top: 100px;
+            left: 20px;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn">
+        <div class="body"></div>
+        <div class="head"></div>
+        <div class="horn"></div>
+        <div class="eye"></div>
+        <div class="mane"></div>
+        <div class="tail"></div>
+        <div class="legs front-left"></div>
+        <div class="legs front-right"></div>
+        <div class="legs back-left"></div>
+        <div class="legs back-right"></div>
+    </div>
+</body>
+</html>
