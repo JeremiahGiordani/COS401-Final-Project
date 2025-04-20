@@ -1,0 +1,173 @@
+--- Evaluating baseline ---
+Evaluating BaselineLLMAgent: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████| 30/30 [04:01<00:00,  8.06s/it]
+Accuracy for baseline: 3.33%
+[2024-II-4] Correct: False | Response: 7 | Solution: 33
+[2024-II-12] Correct: False | Response: 5 | Solution: 23
+[2024-I-4] Correct: False | Response: 5 | Solution: 116
+[2024-I-3] Correct: False | Response: 405 | Solution: 809
+[2024-I-8] Correct: False | Response: 1025 | Solution: 197
+[2024-I-12] Correct: False | Response: 6 | Solution: 385
+[2024-I-11] Correct: False | Response: 65 | Solution: 371
+[2024-II-11] Correct: False | Response: 6 | Solution: 601
+[2024-I-2] Correct: True | Response: 25 | Solution: 25
+[2024-II-6] Correct: False | Response: 47 | Solution: 55
+[2024-I-7] Correct: False | Response: 598 | Solution: 540
+[2024-II-3] Correct: False | Response: 1 | Solution: 45
+[2024-I-1] Correct: False | Response: 195 | Solution: 204
+[2024-II-7] Correct: False | Response: 8323 | Solution: 699
+[2024-I-6] Correct: False | Response: 5600 | Solution: 294
+[2024-I-13] Correct: False | Response: 5 | Solution: 110
+[2024-I-15] Correct: False | Response: 77 | Solution: 721
+[2024-II-15] Correct: False | Response: 27 | Solution: 315
+[2024-II-10] Correct: False | Response: 120 | Solution: 468
+[2024-II-9] Correct: False | Response: 4 | Solution: 902
+[2024-II-14] Correct: False | Response: 32 | Solution: 211
+[2024-II-5] Correct: False | Response: 100 | Solution: 80
+[2024-I-9] Correct: False | Response: 80 | Solution: 480
+[2024-II-2] Correct: False | Response: 286 | Solution: 236
+[2024-II-1] Correct: False | Response: 0 | Solution: 73
+[2024-I-10] Correct: False | Response: 28 | Solution: 113
+[2024-II-8] Correct: False | Response: 17 | Solution: 127
+[2024-I-14] Correct: False | Response: 35 | Solution: 104
+[2024-I-5] Correct: False | Response: 91 | Solution: 104
+[2024-II-13] Correct: False | Response: 512 | Solution: 321
+
+--- Evaluating pydantic ---
+Evaluating PydanticAgent: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 30/30 [03:37<00:00,  7.26s/it]
+Accuracy for pydantic: 13.33%
+[2024-II-4] Correct: False | Response: 31 | Solution: 33
+[2024-II-12] Correct: False | Response: 7 | Solution: 23
+[2024-I-4] Correct: True | Response: 116 | Solution: 116
+[2024-I-3] Correct: False | Response: 404 | Solution: 809
+[2024-I-8] Correct: False | Response: 65 | Solution: 197
+[2024-I-12] Correct: False | Response: 64 | Solution: 385
+[2024-I-11] Correct: False | Response: 33 | Solution: 371
+[2024-II-11] Correct: False | Response: 1 | Solution: 601
+[2024-I-2] Correct: True | Response: 25 | Solution: 25
+[2024-II-6] Correct: False | Response: 25 | Solution: 55
+[2024-I-7] Correct: False | Response: 1200 | Solution: 540
+[2024-II-3] Correct: False | Response: 16 | Solution: 45
+[2024-I-1] Correct: True | Response: 204 | Solution: 204
+[2024-II-7] Correct: False | Response: 993 | Solution: 699
+[2024-I-6] Correct: False | Response: 1225 | Solution: 294
+[2024-I-13] Correct: False | Response: 5 | Solution: 110
+[2024-I-15] Correct: False | Response: 77 | Solution: 721
+[2024-II-15] Correct: False | Response: 27 | Solution: 315
+[2024-II-10] Correct: False | Response: 360 | Solution: 468
+[2024-II-9] Correct: False | Response: 6 | Solution: 902
+[2024-II-14] Correct: False | Response: 20 | Solution: 211
+[2024-II-5] Correct: True | Response: 80 | Solution: 80
+[2024-I-9] Correct: False | Response: 40 | Solution: 480
+[2024-II-2] Correct: False | Response: 248 | Solution: 236
+[2024-II-1] Correct: False | Response: 234 | Solution: 73
+[2024-I-10] Correct: False | Response: 33 | Solution: 113
+[2024-II-8] Correct: False | Response: 7 | Solution: 127
+[2024-I-14] Correct: False | Response: 68 | Solution: 104
+[2024-I-5] Correct: False | Response: 197 | Solution: 104
+[2024-II-13] Correct: False | Response: 250 | Solution: 321
+
+--- Evaluating langchain ---
+Evaluating LangchainAgent: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 30/30 [04:57<00:00,  9.92s/it]
+Accuracy for langchain: 13.33%
+[2024-II-4] Correct: False | Response: 3 | Solution: 33
+[2024-II-12] Correct: False | Response: 5 | Solution: 23
+[2024-I-4] Correct: True | Response: 116 | Solution: 116
+[2024-I-3] Correct: False | Response: 337 | Solution: 809
+[2024-I-8] Correct: False | Response: 35 | Solution: 197
+[2024-I-12] Correct: False | Response: 12 | Solution: 385
+[2024-I-11] Correct: False | Response: 1183 | Solution: 371
+[2024-II-11] Correct: False | Response: 1 | Solution: 601
+[2024-I-2] Correct: True | Response: 25 | Solution: 25
+[2024-II-6] Correct: True | Response: 55 | Solution: 55
+[2024-I-7] Correct: False | Response: 600 | Solution: 540
+[2024-II-3] Correct: False | Response: 0 | Solution: 45
+[2024-I-1] Correct: True | Response: 204 | Solution: 204
+[2024-II-7] Correct: False | Response: 987 | Solution: 699
+[2024-I-6] Correct: False | Response: 84 | Solution: 294
+[2024-I-13] Correct: False | Response: 19 | Solution: 110
+[2024-I-15] Correct: False | Response: 113 | Solution: 721
+[2024-II-15] Correct: False | Response: 12 | Solution: 315
+[2024-II-10] Correct: False | Response: 384 | Solution: 468
+[2024-II-9] Correct: False | Response: 3840 | Solution: 902
+[2024-II-14] Correct: False | Response: 13 | Solution: 211
+[2024-II-5] Correct: False | Response: 20 | Solution: 80
+[2024-I-9] Correct: False | Response: 96 | Solution: 480
+[2024-II-2] Correct: False | Response: 206 | Solution: 236
+[2024-II-1] Correct: False | Response: 218 | Solution: 73
+[2024-I-10] Correct: False | Response: 27 | Solution: 113
+[2024-II-8] Correct: False | Response: 7 | Solution: 127
+[2024-I-14] Correct: False | Response: 46 | Solution: 104
+[2024-I-5] Correct: False | Response: 184 | Solution: 104
+[2024-II-13] Correct: False | Response: 322 | Solution: 321
+
+--- Evaluating crewai ---
+Evaluating CrewAIAgent: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 30/30 [04:47<00:00,  9.58s/it]
+Accuracy for crewai: 13.33%
+[2024-II-4] Correct: False | Response: 15 | Solution: 33
+[2024-II-12] Correct: False | Response: 19 | Solution: 23
+[2024-I-4] Correct: True | Response: 116 | Solution: 116
+[2024-I-3] Correct: False | Response: 1518 | Solution: 809
+[2024-I-8] Correct: False | Response: 4048 | Solution: 197
+[2024-I-12] Correct: False | Response: 7 | Solution: 385
+[2024-I-11] Correct: False | Response: 27 | Solution: 371
+[2024-II-11] Correct: False | Response: 1 | Solution: 601
+[2024-I-2] Correct: True | Response: 25 | Solution: 25
+[2024-II-6] Correct: False | Response: 7 | Solution: 55
+[2024-I-7] Correct: False | Response: 567 | Solution: 540
+[2024-II-3] Correct: False | Response: 1 | Solution: 45
+[2024-I-1] Correct: True | Response: 204 | Solution: 204
+[2024-II-7] Correct: False | Response: 8 | Solution: 699
+[2024-I-6] Correct: False | Response: 4900 | Solution: 294
+[2024-I-13] Correct: False | Response: 5 | Solution: 110
+[2024-I-15] Correct: False | Response: 169 | Solution: 721
+[2024-II-15] Correct: False | Response: 66 | Solution: 315
+[2024-II-10] Correct: False | Response: 13 | Solution: 468
+[2024-II-9] Correct: False | Response: 1024 | Solution: 902
+[2024-II-14] Correct: False | Response: 9 | Solution: 211
+[2024-II-5] Correct: False | Response: 30000 | Solution: 80
+[2024-I-9] Correct: True | Response: 480 | Solution: 480
+[2024-II-2] Correct: False | Response: 246 | Solution: 236
+[2024-II-1] Correct: False | Response: 123 | Solution: 73
+[2024-I-10] Correct: False | Response: 14 | Solution: 113
+[2024-II-8] Correct: False | Response: 6 | Solution: 127
+[2024-I-14] Correct: False | Response: 101 | Solution: 104
+[2024-I-5] Correct: False | Response: 77 | Solution: 104
+[2024-II-13] Correct: False | Response: 1 | Solution: 321
+
+--- Evaluating autogen ---
+Evaluating AutoGenAgent:   0%|                                                                                                                            | 0/30 [00:00<?, ?it/s]/Users/jeremiah/COS401-Final-Project/src/reasoning_agents/autogen_agent.py:21: UserWarning: Resolved model mismatch: gpt-4o-2024-08-06 != gpt-4o-2024-05-13. Model mapping in autogen_ext.models.openai may be incorrect. Set the model to gpt-4o-2024-05-13 to enhance token/cost estimation and suppress this warning.
+  reasoning = await self.agent.create(
+/Users/jeremiah/COS401-Final-Project/src/reasoning_agents/autogen_agent.py:36: UserWarning: Resolved model mismatch: gpt-4o-2024-08-06 != gpt-4o-2024-05-13. Model mapping in autogen_ext.models.openai may be incorrect. Set the model to gpt-4o-2024-05-13 to enhance token/cost estimation and suppress this warning.
+  response = await self.agent.create(
+Evaluating AutoGenAgent: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 30/30 [04:21<00:00,  8.71s/it]
+Accuracy for autogen: 10.00%
+[2024-II-4] Correct: False | Response: 19 | Solution: 33
+[2024-II-12] Correct: False | Response: 16 | Solution: 23
+[2024-I-4] Correct: True | Response: 116 | Solution: 116
+[2024-I-3] Correct: False | Response: 405 | Solution: 809
+[2024-I-8] Correct: False | Response: 61 | Solution: 197
+[2024-I-12] Correct: False | Response: 49 | Solution: 385
+[2024-I-11] Correct: False | Response: 295 | Solution: 371
+[2024-II-11] Correct: False | Response: 6 | Solution: 601
+[2024-I-2] Correct: True | Response: 25 | Solution: 25
+[2024-II-6] Correct: True | Response: 55 | Solution: 55
+[2024-I-7] Correct: False | Response: 504 | Solution: 540
+[2024-II-3] Correct: False | Response: 1001 | Solution: 45
+[2024-I-1] Correct: False | Response: 208 | Solution: 204
+[2024-II-7] Correct: False | Response: 8601 | Solution: 699
+[2024-I-6] Correct: False | Response: 252 | Solution: 294
+[2024-I-13] Correct: False | Response: 5 | Solution: 110
+[2024-I-15] Correct: False | Response: 5 | Solution: 721
+[2024-II-15] Correct: False | Response: 54 | Solution: 315
+[2024-II-10] Correct: False | Response: 168 | Solution: 468
+[2024-II-9] Correct: False | Response: 10 | Solution: 902
+[2024-II-14] Correct: False | Response: 82 | Solution: 211
+[2024-II-5] Correct: False | Response: 120 | Solution: 80
+[2024-I-9] Correct: False | Response: 96 | Solution: 480
+[2024-II-2] Correct: False | Response: 282 | Solution: 236
+[2024-II-1] Correct: False | Response: 234 | Solution: 73
+[2024-I-10] Correct: False | Response: 53 | Solution: 113
+[2024-II-8] Correct: False | Response: 4 | Solution: 127
+[2024-I-14] Correct: False | Response: 138 | Solution: 104
+[2024-I-5] Correct: False | Response: 91 | Solution: 104
+[2024-II-13] Correct: False | Response: 512 | Solution: 321

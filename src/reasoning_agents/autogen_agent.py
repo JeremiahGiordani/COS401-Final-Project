@@ -18,13 +18,25 @@ class AutoGenAgent:
         )
 
     async def _solve_async(self, problem: str) -> int:
+        reasoning = await self.agent.create(
+            messages=[
+                SystemMessage(content=(
+                        "You are solving math competition problems. Please "
+                        "think about the problem very carefully and tackle the "
+                        "problem step by step."
+                    )),
+                UserMessage(content=problem, source="user")
+            ],
+        )
+
+        reasoning = reasoning.content
         parameters = Answer.model_json_schema()
         parameters["additionalProperties"] = False
 
         response = await self.agent.create(
             messages=[
-                SystemMessage(content="You are solving math competition problems. Respond only with the final answer (an integer), no explanation in JSON format."),
-                UserMessage(content=problem, source="user")
+                SystemMessage(content="Extract the answer from the following response. Respond only with the final answer (an integer), no explanation in JSON format"),
+                UserMessage(content=reasoning, source="user")
             ],
             tools=[
                 {
@@ -36,7 +48,6 @@ class AutoGenAgent:
             ],
             extra_create_args={"tool_choice": "required"}
         )
-        print(response)
 
         args_str = response.content[0].arguments
         parsed = Answer.model_validate_json(args_str)
