@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn SVG</title>
+</head>
+<body>
+    <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background -->
+        <rect width="100%" height="100%" fill="skyblue"/>
+        <circle cx="700" cy="100" r="50" fill="yellow">
+            <animate attributeName="r" values="45;55;45" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <rect y="400" width="100%" height="200" fill="lightgreen" />
+
+        <!-- Body -->
+        <ellipse cx="400" cy="350" rx="120" ry="70" fill="lavender" stroke="purple" stroke-width="2" />
+
+        <!-- Head -->
+        <ellipse cx="500" cy="250" rx="50" ry="60" fill="lavender" stroke="purple" stroke-width="2" />
+
+        <!-- Legs -->
+        <rect x="330" y="400" width="20" height="80" rx="10" fill="lavender" stroke="purple" stroke-width="2" />
+        <rect x="370" y="400" width="20" height="80" rx="10" fill="lavender" stroke="purple" stroke-width="2" />
+        <rect x="430" y="400" width="20" height="80" rx="10" fill="lavender" stroke="purple" stroke-width="2" />
+        <rect x="470" y="400" width="20" height="80" rx="10" fill="lavender" stroke="purple" stroke-width="2" />
+
+        <!-- Mane -->
+        <path d="M500 200 C520 160, 540 180, 520 250 C540 270, 500 300, 480 260"
+              fill="none" stroke="pink" stroke-width="12"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M485 215 C500 180, 520 200, 500 260 C520 270, 480 290, 465 250"
+              fill="none" stroke="hotpink" stroke-width="8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M470 230 C480 200, 500 220, 480 270 C500 280, 460 290, 445 255"
+              fill="none" stroke="purple" stroke-width="6"
+              stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="d" values="
+                M470 230 C480 200, 500 220, 480 270 C500 280, 460 290, 445 255;
+                M470 230 C490 190, 510 230, 490 280 C510 295, 470 310, 450 270;
+                M470 230 C480 200, 500 220, 480 270 C500 280, 460 290, 445 255
+                " dur="6s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Tail -->
+        <path d="M280 350 C300 400, 380 400, 360 460" fill="none" stroke="pink" stroke-width="12"
+              stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="d" values="
+                M280 350 C300 400, 380 400, 360 460;
+                M280 360 C310 410, 390 410, 370 470;
+                M280 350 C300 400, 380 400, 360 460
+                " dur="5s" repeatCount="indefinite"/>
+        </path>
+        <path d="M285 350 C305 400, 385 400, 365 460" fill="none" stroke="hotpink" stroke-width="10"
+              stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="d" values="
+                M285 350 C305 400, 385 400, 365 460;
+                M285 360 C315 410, 395 410, 375 470;
+                M285 350 C305 400, 385 400, 365 460
+                " dur="5s" repeatCount="indefinite"/>
+        </path>
+        <path d="M290 360 C310 410, 390 410, 370 470" fill="none" stroke="purple" stroke-width="8"
+              stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="d" values="
+                M290 360 C310 410, 390 410, 370 470;
+                M290 370 C320 420, 400 420, 380 480;
+                M290 360 C310 410, 390 410, 370 470
+                " dur="5s" repeatCount="indefinite"/>
+        </path>
+
+        <!-- Horn -->
+        <polygon points="500,190 490,250 510,250" fill="gold">
+            <animate attributeName="points" values="
+                500,190 490,250 510,250;
+                500,185 488,245 512,245;
+                500,190 490,250 510,250
+                " dur="2s" repeatCount="indefinite"/>
+        </polygon>
+        
+    </svg>
+</body>
+</html>

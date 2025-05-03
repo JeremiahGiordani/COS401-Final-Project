@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Space Scene</title>
+</head>
+<body>
+  <svg width="100%" height="100vh" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <defs>
+      <radialGradient id="spaceGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="0%" style="stop-color:#000428;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#004e92;stop-opacity:1" />
+      </radialGradient>
+      <radialGradient id="planetGradient1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="10%" style="stop-color:#123456;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#6b93d6;stop-opacity:1" />
+      </radialGradient>
+      <radialGradient id="planetGradient2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="10%" style="stop-color:#881111;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#ff6347;stop-opacity:1" />
+      </radialGradient>
+      <radialGradient id="nebulaGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="10%" style="stop-color:#822682;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#4b0082;stop-opacity:1" />
+      </radialGradient>
+      <radialGradient id="thrusterGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="0%" style="stop-color:#ff6700;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#ffeb3b;stop-opacity:1" />
+      </radialGradient>
+    </defs>
+    <rect width="800" height="600" fill="url(#spaceGradient)" />
+    <!-- Twinkling Stars -->
+    <circle cx="100" cy="100" r="2" fill="white">
+      <animate attributeName="opacity" values="1;0.1;1" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="150" cy="200" r="1.5" fill="white">
+      <animate attributeName="opacity" values="1;0.1;1" dur="1.5s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="300" cy="150" r="2.5" fill="white">
+      <animate attributeName="opacity" values="1;0.1;1" dur="2.5s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="400" cy="100" r="2" stroke="white" fill="yellow">
+      <animate attributeName="opacity" values="1;0.1;1" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="550" cy="350" r="1.5" fill="white">
+      <animate attributeName="opacity" values="1;0.1;1" dur="1.2s" repeatCount="indefinite" />
+    </circle>
+    <!-- Planets -->
+    <circle cx="200" cy="400" r="50" fill="url(#planetGradient1)" />
+    <circle cx="600" cy="300" r="40" fill="url(#planetGradient2)" />
+    <!-- Galaxy/Nebula -->
+    <path d="M 500 200 Q 550 150, 600 200 T 700 300" fill="none" stroke="url(#nebulaGradient)" stroke-width="8">
+      <animate attributeName="stroke-width" values="8;10;8" dur="5s" repeatCount="indefinite" />
+    </path>
+    <path d="M 450 250 Q 500 200, 550 250 T 650 350" fill="none" stroke="url(#nebulaGradient)" stroke-width="5">
+      <animate attributeName="stroke-width" values="5;7;5" dur="6s" repeatCount="indefinite" />
+    </path>
+    <!-- Spaceship -->
+    <polygon points="400,500 420,520 400,540 380,520" fill="grey" stroke="black" stroke-width="2" />
+    <polygon points="400,500 420,480 380,480" fill="lightgrey" stroke="black" stroke-width="2" />
+    <polygon points="400,540 420,560 380,560" fill="url(#thrusterGradient)" />
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="0 -100" begin="0s" dur="10s" repeatCount="indefinite" />
+  </svg>
+</body>
+</html>

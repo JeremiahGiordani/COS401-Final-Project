@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Layout</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #FF0000;
+      padding: 10px;
+      color: #fff;
+    }
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .navbar .search-bar {
+      flex-grow: 1;
+      padding: 0 20px;
+    }
+    .navbar .search-bar input {
+      width: 100%;
+      padding: 5px;
+      font-size: 16px;
+    }
+    .navbar .icons {
+      display: flex;
+      gap: 15px;
+    }
+    .navbar .icons span {
+      width: 24px;
+      height: 24px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .main-container {
+      display: flex;
+    }
+    .sidebar {
+      width: 240px;
+      background-color: #f9f9f9;
+      padding: 10px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #000;
+      text-decoration: none;
+      margin: 5px 0;
+    }
+    .sidebar a:hover {
+      background-color: #e1e1e1;
+    }
+    .video-grid {
+      flex-grow: 1;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 15px;
+    }
+    .video-item {
+      background-color: #fff;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    .video-item img {
+      width: 100%;
+      height: auto;
+    }
+    .video-info {
+      padding-top: 10px;
+    }
+    .video-info h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+    .video-info p {
+      margin: 5px 0 0;
+      color: #606060;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">YouTube</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+    </div>
+    <div class="icons">
+      <span>🔍</span>
+      <span>🔔</span>
+      <span>👤</span>
+    </div>
+  </div>
+  
+  <div class="main-container">
+    <div class="sidebar">
+      <a href="#">Home</a>
+      <a href="#">Subscriptions</a>
+      <a href="#">Library</a>
+    </div>
+    
+    <div class="video-grid">
+      <div class="video-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/1599px-Felis_catus-cat_on_snow.jpg?20190920093216" alt="Video Thumbnail">
+        <div class="video-info">
+          <h4>Cute Cat on Snow</h4>
+          <p>CatChannel • 4M views</p>
+        </div>
+      </div>
+      
+      <div class="video-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Eurasian_blue_tit_Lancashire.jpg/640px-Eurasian_blue_tit_Lancashire.jpg" alt="Video Thumbnail">
+        <div class="video-info">
+          <h4>Blue Tit Bird</h4>
+          <p>BirdWatchers • 1.2M views</p>
+        </div>
+      </div>
+      
+      <div class="video-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Onion_domes_of_Cathedral_of_the_Annunciation.JPG/640px-Onion_domes_of_Cathedral_of_the_Annunciation.JPG" alt="Video Thumbnail">
+        <div class="video-info">
+          <h4>Beautiful Cathedral</h4>
+          <p>TravelVlogs • 980K views</p>
+        </div>
+      </div>
+      
+      <div class="video-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Soyuz_TMA-16_approaching_ISS.jpg/640px-Soyuz_TMA-16_approaching_ISS.jpg" alt="Video Thumbnail">
+        <div class="video-info">
+          <h4>Space Expedition</h4>
+          <p>SpaceXploration • 2.3M views</p>
+        </div>
+      </div>
+      
+      <div class="video-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/German-Shepherd-dog-rainbow-shake.jpg/640px-German-Shepherd-dog-rainbow-shake.jpg" alt="Video Thumbnail">
+        <div class="video-info">
+          <h4>German Shepherd Fun</h4>
+          <p>DogLovers • 3.5M views</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

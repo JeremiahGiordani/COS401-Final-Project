@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Rendering</title>
+</head>
+<body>
+    <svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(255,192,203);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgb(255,105,180);stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="maneGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(255,0,255);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgb(75,0,130);stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <g transform="translate(100,100)">
+            <path d="M150 200 Q130 180 110 200 Q90 220 70 200 Q50 180 30 200 Q10 220 0 200 Q-10 180 -30 200 Q-50 220 -70 200 Q-90 180 -110 200 Q-130 220 -150 200" fill="url(#maneGradient)" />
+            <circle cx="0" cy="0" r="100" fill="url(#bodyGradient)" />
+            <rect x="-20" y="-100" width="40" height="100" fill="white" />
+            <polygon points="0,-100 10,-150 -10,-150" fill="white" />
+            <circle cx="-30" cy="-30" r="10" fill="black" />
+            <circle cx="30" cy="-30" r="10" fill="black" />
+            <path d="M-30 -20 Q0 0 30 -20" stroke="black" stroke-width="3" fill="none" />
+            <path d="M-50 50 Q-70 70 -90 50" stroke="black" stroke-width="3" fill="none" />
+            <path d="M50 50 Q70 70 90 50" stroke="black" stroke-width="3" fill="none" />
+            <path d="M-50 100 Q-70 120 -90 100" stroke="black" stroke-width="3" fill="none" />
+            <path d="M50 100 Q70 120 90 100" stroke="black" stroke-width="3" fill="none" />
+        </g>
+    </svg>
+</body>
+</html>

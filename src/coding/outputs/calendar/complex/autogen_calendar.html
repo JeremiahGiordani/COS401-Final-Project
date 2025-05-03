@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(17, 40px);
+            border-top: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            position: relative;
+        }
+        .calendar-day {
+            display: grid;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        .calendar-day:nth-child(1) { grid-column: 1 / 2; }
+        .calendar-day:nth-child(2) { grid-column: 2 / 3; }
+        .calendar-day:nth-child(3) { grid-column: 3 / 4; }
+        .calendar-day:nth-child(4) { grid-column: 4 / 5; }
+        .calendar-day:nth-child(5) { grid-column: 5 / 6; }
+
+        .time-slot { height: 40px; border-bottom: 1px solid #eaeaea; }
+        .event {
+            background-color: #1e90ff;
+            color: white;
+            position: absolute;
+            padding: 2px 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .highlight { background-color: rgba(30, 144, 255, 0.3); }
+        .current-time {
+            position: absolute;
+            width: 100%;
+            border-top: 2px solid red;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+<div class="calendar" id="calendar">
+    <div class="calendar-day" data-day="Monday"></div>
+    <div class="calendar-day" data-day="Tuesday"></div>
+    <div class="calendar-day" data-day="Wednesday"></div>
+    <div class="calendar-day" data-day="Thursday"></div>
+    <div class="calendar-day" data-day="Friday"></div>
+</div>
+<!-- Popup for event name input -->
+<div id="event-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);background:#fff; padding:10px; border: 1px solid #ccc;">
+    <label for="event-name">Event Name:</label>
+    <input type="text" id="event-name">
+    <button id="save-event">Save</button>
+</div>
+<button id="today-btn" style="position:fixed; bottom:10px; right:10px;">Today</button>
+<script>
+    const calendar = document.getElementById('calendar');
+    const popup = document.getElementById('event-popup');
+    const eventNameInput = document.getElementById('event-name');
+    const saveEventButton = document.getElementById('save-event');
+    const todayButton = document.getElementById('today-btn');
+    let isDragging = false, startSlot, endSlot, currentSlot, currentDay, selectedSlot, events = [];
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create time slots
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            ['09:00 AM','09:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','01:00 PM','01:30 PM','02:00 PM','02:30 PM','03:00 PM','03:30 PM','04:00 PM','04:30 PM','05:00 PM'].forEach(time => {
+                const slot = document.createElement('div');
+                slot.classList.add('time-slot');
+                slot.dataset.time = time;
+                day.appendChild(slot);
+            });
+        });
+        
+        calendar.addEventListener('mousedown', (e) => {
+            if (e.target.classList.contains('time-slot') || e.target.closest('.time-slot')) {
+                startSlot = e.target.closest('.time-slot');
+                currentDay = startSlot.closest('.calendar-day').dataset.day;
+                isDragging = true;
+            }
+        });
+
+        calendar.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                currentSlot = e.target.closest('.time-slot');
+                calendar.querySelectorAll('.highlight').forEach(slot => slot.classList.remove('highlight'));
+                if (currentSlot && currentSlot.closest('.calendar-day').dataset.day === currentDay) {
+                    const startIndex = Math.min([...currentSlot.parentElement.children].indexOf(currentSlot), [...currentSlot.parentElement.children].indexOf(startSlot));
+                    const endIndex = Math.max([...currentSlot.parentElement.children].indexOf(currentSlot), [...currentSlot.parentElement.children].indexOf(startSlot));
+                    for (let i = startIndex; i <= endIndex; i++) {
+                        currentSlot.parentElement.children[i].classList.add('highlight');
+                    }
+                }
+            }
+        });
+
+        calendar.addEventListener('mouseup', (e) => {
+            if (isDragging) {
+                isDragging = false;
+                endSlot = currentSlot || startSlot;
+                calendar.querySelectorAll('.highlight').forEach(slot => slot.classList.remove('highlight'));
+                if (endSlot.closest('.calendar-day').dataset.day !== startSlot.closest('.calendar-day').dataset.day) return;
+                const startTime = startSlot.dataset.time;
+                const endTime = endSlot.dataset.time;
+                const day = startSlot.closest('.calendar-day').dataset.day;
+
+                popup.style.display = 'block';
+                selectedSlot = {startSlot, endSlot, startTime, endTime, day};
+            }
+        });
+
+        saveEventButton.addEventListener('click', () => {
+            const eventName = eventNameInput.value;
+            if (!eventName.trim()) return;
+
+            const event = document.createElement('div');
+            event.classList.add('event');
+            event.textContent = `${eventName} - ${selectedSlot.startTime}-${selectedSlot.endTime}`;
+            const slots = [...selectedSlot.startSlot.parentElement.children];
+            const startIndex = slots.indexOf(selectedSlot.startSlot);
+            const endIndex = slots.indexOf(selectedSlot.endSlot) + 1;
+            const top = startIndex * 40;
+            const height = (endIndex - startIndex) * 40 - 2; // Adjust for border
+
+            event.style.top = `${top}px`;
+            event.style.height = `${height}px`;
+            event.style.width = 'calc(100% - 2px)';
+            event.style.left = '1px';
+            eventSlot = event;
+            selectedSlot.startSlot.parentElement.appendChild(event);
+            events.push([...slots.slice(startIndex, endIndex), event]);
+            popup.style.display = 'none';
+            eventNameInput.value = '';
+
+            event.addEventListener('click', (e) => {
+                if (confirm('Delete this event?')) {
+                    events = events.filter(ev => !ev.includes(event));
+                    event.remove();
+                }
+            });
+
+            event.addEventListener('mousedown', (e) => {
+                if (e.target !== event) return;
+                let offsetY = e.offsetY;
+                let mouseStartY = e.clientY;
+                let initialHeight = height;
+                let canResize = false;
+
+                // Check if the event was clicked on its lower part (for resizing)
+                if (offsetY > height - 10) {
+                    canResize = true;
+
+                    const resize = (e) => {
+                        if (canResize) {
+                            let newHeight = initialHeight + (e.clientY - mouseStartY);
+                            let slotsCount = Math.round(newHeight / 40);
+                            newHeight = slotsCount * 40 - 2;
+                            if (newHeight >= 40) {
+                                event.style.height = `${newHeight}px`;
+                                const endIndex = startIndex + slotsCount;
+                                const endTimeSlot = slots[endIndex];
+                                if (endTimeSlot) {
+                                    event.textContent = `${eventName} - ${selectedSlot.startTime}-${endTimeSlot.dataset.time}`;
+                                    selectedSlot.endTime = endTimeSlot.dataset.time;
+                                }
+                            }
+                        }
+                    };
+
+                    document.addEventListener('mousemove', resize);
+                    document.addEventListener('mouseup', () => {
+                        canResize = false;
+                        document.removeEventListener('mousemove', resize);
+                    }, { once: true });
+                }
+            });
+        });
+
+        todayButton.addEventListener('click', () => {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            let top = (hours - 9) * 40 + (minutes / 30) * 40;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+
+        function updateCurrentTimeLine() {
+            const now = new Date();
+            const dayIndex = now.getDay() - 1;
+            const timeInMinutes = now.getHours() * 60 + now.getMinutes();
+            if (timeInMinutes >= 9 * 60 && timeInMinutes <= 17 * 60 && dayIndex >= 0 && dayIndex < 5) {
+                const top = (timeInMinutes - 9 * 60) * (40 / 30);
+                let line = document.querySelector('.current-time');
+                if (!line) {
+                    line = document.createElement('div');
+                    line.classList.add('current-time');
+                    calendar.appendChild(line);
+                }
+                line.style.top = `${top}px`;
+                line.style.gridColumn = `${dayIndex + 1} / span 1`;
+            }
+        }
+
+        window.setInterval(updateCurrentTimeLine, 60000);
+        updateCurrentTimeLine();
+    });
+</script>
+</body>
+</html>

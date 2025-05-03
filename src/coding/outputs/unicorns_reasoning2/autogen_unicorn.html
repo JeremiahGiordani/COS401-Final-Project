@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Unicorn</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to top right, #a1c4fd, #c2e9fb);
+    margin: 0;
+    overflow: hidden;
+  }
+  .unicorn {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    animation: trot 3s infinite alternate;
+  }
+  .unicorn .body {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+  }
+  .unicorn .head {
+    position: absolute;
+    top: 20px;
+    left: 80px;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+  }
+  .unicorn .eye {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+    top: 20px;
+    left: 20px;
+  }
+  .unicorn .horn {
+    position: absolute;
+    top: -40px;
+    left: 105px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 40px solid #ff91a4;
+  }
+  .unicorn .leg {
+    position: absolute;
+    width: 15px;
+    height: 50px;
+    background: white;
+    bottom: 0;
+    animation: moveLeg 1.5s infinite alternate;
+  }
+  .unicorn .leg1 { left: 50px; }
+  .unicorn .leg2 { left: 70px; }
+  .unicorn .leg3 { right: 70px; }
+  .unicorn .leg4 { right: 50px; }
+  .unicorn .tail {
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    width: 20px;
+    height: 70px;
+    background: linear-gradient(45deg, rgba(255, 182, 193, 1) 0%, rgba(255, 105, 180, 1) 50%, rgba(93, 113, 177, 1) 100%);
+    border-radius: 15px;
+    animation: swayTail 2s infinite alternate;
+  }
+  .unicorn .mane {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    width: 15px;
+    height: 75px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    border-radius: 8px;
+    transform: rotate(45deg);
+    animation: swayMane 2.5s infinite alternate;
+  }
+
+  @keyframes moveLeg {
+    0% { transform: rotate(15deg); }
+    100% { transform: rotate(-15deg); }
+  }
+
+  @keyframes swayTail {
+    0% { transform: rotate(10deg); }
+    100% { transform: rotate(-10deg); }
+  }
+
+  @keyframes swayMane {
+    0% { transform: rotate(45deg) translateX(0); }
+    100% { transform: rotate(55deg) translateX(-5px); }
+  }
+
+  @keyframes trot {
+    0% { transform: translateY(-5px); }
+    100% { transform: translateY(5px); }
+  }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const unicorn = document.querySelector('.unicorn');
+  const changeColor = () => {
+    const colors = ['#ff9a9e', '#a1c4fd', '#c2e9fb', '#fad0c4'];
+    unicorn.querySelector('.mane').style.background = `linear-gradient(135deg, ${colors[Math.floor(Math.random() * colors.length)]}, #fad0c4)`;
+    unicorn.querySelector('.tail').style.background = `linear-gradient(135deg, ${colors[Math.floor(Math.random() * colors.length)]}, ${colors[Math.floor(Math.random() * colors.length)]})`;
+  };
+  unicorn.addEventListener('click', changeColor);
+});
+</script>
+</head>
+<body>
+<div class="unicorn">
+  <div class="body"></div>
+  <div class="head">
+    <div class="eye"></div>
+  </div>
+  <div class="horn"></div>
+  <div class="leg leg1"></div>
+  <div class="leg leg2"></div>
+  <div class="leg leg3"></div>
+  <div class="leg leg4"></div>
+  <div class="tail"></div>
+  <div class="mane"></div>
+</div>
+</body>
+</html>

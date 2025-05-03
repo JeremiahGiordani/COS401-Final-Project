@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Calendar</title>
+    <style>
+      /* Basic resets */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      /* Calendar container styling */
+      .calendar {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        border: 1px solid #ccc;
+        background: #fff;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      /* Header: day names with an empty top-left “corner” */
+      .calendar-header {
+        display: grid;
+        grid-template-columns: 60px repeat(5, 1fr);
+        border-bottom: 1px solid #ccc;
+        background: #f0f0f0;
+      }
+      .calendar-header div {
+        padding: 10px;
+        text-align: center;
+        border-right: 1px solid #ccc;
+        font-weight: bold;
+        font-size: 0.9em;
+      }
+      .calendar-header div:first-child {
+        border-right: none;
+      }
+      /* Body: left column for times and 5 day columns */
+      .calendar-body {
+        display: grid;
+        grid-template-columns: 60px repeat(5, 1fr);
+        height: 640px; /* 16 intervals * 40px each */
+        position: relative;
+      }
+      /* Time labels column */
+      .time-labels {
+        border-right: 1px solid #ccc;
+        position: relative;
+      }
+      .time-label {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        text-align: right;
+        padding-right: 5px;
+        font-size: 0.8em;
+        color: #666;
+      }
+      /* Day columns */
+      .day-column {
+        position: relative;
+        border-right: 1px solid #ccc;
+        cursor: pointer;
+        overflow: hidden;
+      }
+      .day-column:last-child {
+        border-right: none;
+      }
+      /* Grid lines for time slots */
+      .day-column::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(to bottom, transparent 39px, #eee 40px);
+        background-size: 100% 40px;
+        pointer-events: none;
+      }
+      /* Event box styling */
+      .event-box {
+        position: absolute;
+        background: rgba(0, 123, 255, 0.7);
+        border: 1px solid #007bff;
+        color: #fff;
+        font-size: 0.8em;
+        padding: 2px 4px;
+        border-radius: 4px;
+        cursor: pointer;
+        overflow: hidden;
+      }
+      /* Make calendar responsive */
+      @media screen and (max-width: 700px) {
+        .calendar-header,
+        .calendar-body {
+          grid-template-columns: 40px repeat(5, 1fr);
+        }
+        .time-label {
+          font-size: 0.7em;
+        }
+        .calendar-header div {
+          padding: 5px;
+          font-size: 0.7em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Weekly Calendar</h1>
+    <div class="calendar">
+      <!-- Header row: empty spot for left column then days-->
+      <div class="calendar-header">
+        <div></div>
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+        <div>Thursday</div>
+        <div>Friday</div>
+      </div>
+      <!-- Calendar body: time labels and day columns -->
+      <div class="calendar-body">
+        <!-- Time labels -->
+        <div class="time-labels">
+          <!-- We are from 9:00 to 17:00 -> 8 hours, 16 intervals -->
+          <!-- Using position absolute for each label -->
+          <div class="time-label" style="top: 0px;">9:00 AM</div>
+          <div class="time-label" style="top: 40px;">9:30 AM</div>
+          <div class="time-label" style="top: 80px;">10:00 AM</div>
+          <div class="time-label" style="top: 120px;">10:30 AM</div>
+          <div class="time-label" style="top: 160px;">11:00 AM</div>
+          <div class="time-label" style="top: 200px;">11:30 AM</div>
+          <div class="time-label" style="top: 240px;">12:00 PM</div>
+          <div class="time-label" style="top: 280px;">12:30 PM</div>
+          <div class="time-label" style="top: 320px;">1:00 PM</div>
+          <div class="time-label" style="top: 360px;">1:30 PM</div>
+          <div class="time-label" style="top: 400px;">2:00 PM</div>
+          <div class="time-label" style="top: 440px;">2:30 PM</div>
+          <div class="time-label" style="top: 480px;">3:00 PM</div>
+          <div class="time-label" style="top: 520px;">3:30 PM</div>
+          <div class="time-label" style="top: 560px;">4:00 PM</div>
+          <div class="time-label" style="top: 600px;">4:30 PM</div>
+        </div>
+        <!-- Day columns for Monday-Friday -->
+        <div class="day-column" data-day="monday"></div>
+        <div class="day-column" data-day="tuesday"></div>
+        <div class="day-column" data-day="wednesday"></div>
+        <div class="day-column" data-day="thursday"></div>
+        <div class="day-column" data-day="friday"></div>
+      </div>
+    </div>
+
+    <script>
+      // Global constants
+      const INTERVAL_HEIGHT = 40; // Each 30-minute interval is 40px tall.
+      const START_HOUR = 9; // calendar starts at 9:00 AM
+      const TOTAL_INTERVALS = 16; // 8 hours * 2
+      let isDragging = false;
+      let currentBox = null;
+      let dragStartInterval = 0;
+      let currentColumn = null;
+
+      // Helper to format time from interval index (0 means 9:00 AM)
+      function formatTime(intervalIndex) {
+        // Each interval is 30 mins. Calculate hour and minute.
+        let totalMinutes = intervalIndex * 30;
+        let hour = START_HOUR + Math.floor(totalMinutes / 60);
+        let minute = totalMinutes % 60;
+        // Formatting AM/PM
+        let period = hour >= 12 ? "PM" : "AM";
+        let displayHour = hour > 12 ? hour - 12 : hour;
+        if (displayHour === 0) displayHour = 12;
+        let minuteStr = minute === 0 ? "00" : minute;
+        return displayHour + ":" + minuteStr + " " + period;
+      }
+
+      // Add event listeners to each day column
+      const dayColumns = document.querySelectorAll(".day-column");
+      dayColumns.forEach(column => {
+        column.addEventListener("mousedown", function(e) {
+          // Only start if we not clicking on an event-box
+          if (e.target.classList.contains("event-box")) return;
+          isDragging = true;
+          currentColumn = column;
+          let rect = column.getBoundingClientRect();
+          // Compute mouse y relative to column
+          let offsetY = e.clientY - rect.top;
+          // Snap the start to the nearest interval
+          dragStartInterval = Math.floor(offsetY / INTERVAL_HEIGHT);
+          let snappedTop = dragStartInterval * INTERVAL_HEIGHT;
+
+          // Create a new event box element
+          currentBox = document.createElement("div");
+          currentBox.className = "event-box";
+          currentBox.style.top = snappedTop + "px";
+          currentBox.style.left = "2px";
+          currentBox.style.right = "2px";
+          currentBox.style.height = INTERVAL_HEIGHT + "px";
+          // Set initial text (will update on drag)
+          currentBox.textContent = formatTime(dragStartInterval) + " – " + formatTime(dragStartInterval + 1);
+          // Add click listener to delete the event
+          currentBox.addEventListener("click", function(event) {
+            // Prevent propagation if still dragging.
+            event.stopPropagation();
+            let confirmDelete = confirm("Delete this event?");
+            if (confirmDelete) {
+              currentBox.remove();
+            }
+          });
+          column.appendChild(currentBox);
+        });
+      });
+
+      // Listen on the document for mousemove and mouseup events
+      document.addEventListener("mousemove", function(e) {
+        if (!isDragging || !currentBox || !currentColumn) return;
+        let rect = currentColumn.getBoundingClientRect();
+        // Clamp the cursor within the column height
+        let offsetY = Math.min(Math.max(e.clientY - rect.top, 0), rect.height);
+        let currentInterval = Math.floor(offsetY / INTERVAL_HEIGHT);
+
+        // Determine top and height based on drag direction
+        let topInterval, endInterval;
+        if (currentInterval >= dragStartInterval) {
+          topInterval = dragStartInterval;
+          endInterval = currentInterval + 1; // include the current slot
+        } else {
+          topInterval = currentInterval;
+          endInterval = dragStartInterval + 1;
+        }
+        // Prevent negative times & limit to TOTAL_INTERVALS
+        topInterval = Math.max(0, Math.min(topInterval, TOTAL_INTERVALS - 1));
+        endInterval = Math.max(1, Math.min(endInterval, TOTAL_INTERVALS));
+
+        let newTop = topInterval * INTERVAL_HEIGHT;
+        let newHeight = (endInterval - topInterval) * INTERVAL_HEIGHT;
+        currentBox.style.top = newTop + "px";
+        currentBox.style.height = newHeight + "px";
+
+        // Update label text with start and end times.
+        currentBox.textContent = formatTime(topInterval) + " – " + formatTime(endInterval);
+      });
+
+      document.addEventListener("mouseup", function(e) {
+        if (isDragging && currentBox) {
+          // Finalize event: if height is really small then remove it.
+          let height = parseInt(currentBox.style.height, 10);
+          if (height < INTERVAL_HEIGHT) {
+            currentBox.remove();
+          }
+        }
+        isDragging = false;
+        currentBox = null;
+        currentColumn = null;
+      });
+
+      // Prevent text selection during drag
+      document.addEventListener("selectstart", function(e) {
+        if (isDragging) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>

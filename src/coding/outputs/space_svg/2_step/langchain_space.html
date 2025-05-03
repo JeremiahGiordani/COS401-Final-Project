@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Scene</title>
+</head>
+<body>
+    <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="spaceGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:darkblue;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:black;stop-opacity:1" />
+            </radialGradient>
+            <radialGradient id="planetGradient1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:lightblue;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:blue;stop-opacity:1" />
+            </radialGradient>
+            <radialGradient id="planetGradient2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:lightcoral;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:red;stop-opacity:1" />
+            </radialGradient>
+            <linearGradient id="cometGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:white;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:lightblue;stop-opacity:0" />
+            </linearGradient>
+            <linearGradient id="nebulaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:purple;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:pink;stop-opacity:0.2" />
+            </linearGradient>
+            <style>
+                @keyframes twinkle {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.5; }
+                }
+                @keyframes moveComet {
+                    0% { transform: translate(0, 0); }
+                    100% { transform: translate(800px, 600px); }
+                }
+                @keyframes moveSpaceship {
+                    0% { transform: translate(0, 0); }
+                    100% { transform: translate(600px, -400px); }
+                }
+            </style>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#spaceGradient)" />
+        <circle cx="100" cy="100" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="200" cy="150" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="300" cy="50" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="400" cy="200" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="500" cy="100" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="600" cy="150" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="700" cy="50" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="750" cy="200" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="650" cy="300" r="2.5" fill="yellow" style="animation: twinkle 3s infinite;" />
+        <circle cx="550" cy="400" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="450" cy="350" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="350" cy="450" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="250" cy="400" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="150" cy="350" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="50" cy="450" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="100" cy="500" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="200" cy="550" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="300" cy="500" r="2.5" fill="yellow" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="400" cy="550" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="500" cy="500" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="600" cy="550" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="700" cy="500" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="750" cy="450" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="650" cy="400" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="550" cy="350" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="450" cy="300" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="350" cy="250" r="2.5" fill="yellow" style="animation: twinkle 3s infinite;" />
+        <circle cx="250" cy="200" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="150" cy="150" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="50" cy="100" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="100" cy="50" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="200" cy="100" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="300" cy="150" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="400" cy="100" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="500" cy="50" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="600" cy="100" r="2.5" fill="yellow" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="700" cy="150" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="750" cy="200" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="650" cy="250" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="550" cy="300" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="450" cy="350" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="350" cy="400" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="250" cy="450" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="150" cy="500" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="50" cy="550" r="2.5" fill="yellow" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="100" cy="600" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="200" cy="650" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="300" cy="700" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="400" cy="750" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="500" cy="800" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="600" cy="850" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="700" cy="900" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="750" cy="950" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="650" cy="1000" r="2.5" fill="yellow" style="animation: twinkle 3s infinite;" />
+        <circle cx="550" cy="1050" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="450" cy="1100" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="350" cy="1150" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="250" cy="1200" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="150" cy="1250" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="50" cy="1300" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="100" cy="1350" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="200" cy="1400" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="300" cy="1450" r="2.5" fill="yellow" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="400" cy="1500" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="500" cy="1550" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="600" cy="1600" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="700" cy="1650" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="750" cy="1700" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="650" cy="1750" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="550" cy="1800" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="450" cy="1850" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="350" cy="1900" r="2.5" fill="yellow" style="animation: twinkle 3s infinite;" />
+        <circle cx="250" cy="1950" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="150" cy="2000" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="50" cy="2050" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="100" cy="2100" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="200" cy="2150" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="300" cy="2200" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="400" cy="2250" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="500" cy="2300" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="600" cy="2350" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="700" cy="2400" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="750" cy="2450" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="650" cy="2500" r="2.5" fill="yellow" style="animation: twinkle 3s infinite;" />
+        <circle cx="550" cy="2550" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="450" cy="2600" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="350" cy="2650" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="250" cy="2700" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="150" cy="2750" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="50" cy="2800" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="100" cy="2850" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="200" cy="2900" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="300" cy="2950" r="2.5" fill="yellow" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="400" cy="3000" r="2" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="500" cy="3050" r="1.5" fill="lightblue" style="animation: twinkle 3s infinite;" />
+        <circle cx="600" cy="3100" r="2.5" fill="yellow" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="700" cy="3150" r="2" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="750" cy="3200" r="1.5" fill="lightblue" style="animation: twinkle 3.5s infinite;" />
+        <circle cx="650" cy="3250" r="2.5" fill="yellow" style="animation: twinkle 2s infinite;" />
+        <circle cx="550" cy="3300" r="2" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="450" cy="3350" r="1.5" fill="lightblue" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="350" cy="3400" r="2.5" fill="yellow

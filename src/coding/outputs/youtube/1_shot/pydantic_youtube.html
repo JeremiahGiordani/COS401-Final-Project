@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: white;
+        }
+        header img {
+            max-height: 40px;
+        }
+        .search-bar {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .search-bar input {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 2px 0 0 2px;
+            font-size: 16px;
+        }
+        .search-bar button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #333;
+            border-radius: 0 2px 2px 0;
+        }
+        .search-bar button img {
+            max-height: 20px;
+        }
+        .icons img {
+            max-height: 20px;
+            margin-left: 15px;
+        }
+        .sidebar {
+            width: 240px;
+            padding: 15px 0;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            top: 60px;
+            transition: left 0.3s ease;
+        }
+        .sidebar img {
+            max-height: 20px;
+            margin-right: 15px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 10px 20px;
+        }
+        .video-thumbnail {
+            height: 150px;
+            margin-bottom: 10px;
+        }
+        .video-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .video-details {
+            font-size: 14px;
+            color: #606060;
+        }
+        .video-card {
+            width: 240px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo">
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+            <button><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/640px-Magnifying_glass_icon.svg.png" alt="Search"></button>
+        </div>
+        <div class="icons">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Noun_Project_cloud_upload_icon_411593_cc.svg/640px-Noun_Project_cloud_upload_icon_411593_cc.svg.png" alt="Upload">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bell-solid.svg/640px-Bell-solid.svg.png" alt="Notifications">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/VK_icons_profile_28.svg/640px-VK_icons_profile_28.svg.png" alt="Profile">
+        </div>
+    </header>
+    <div class="sidebar">
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Home_free_icon.svg/640px-Home_free_icon.svg.png" alt="Home Icon">Home</a>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/VK_icons_history_outline_56.svg/640px-VK_icons_history_outline_56.svg.png" alt="History Icon">History</a>
+        <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/OOjs_UI_icon_clock.svg/640px-OOjs_UI_icon_clock.svg.png" alt="Watch Later Icon">Watch Later</a>
+    </div>
+    <div class="content">
+        <div class="video-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/1599px-Felis_catus-cat_on_snow.jpg?20190920093216" alt="Video Thumbnail 1" class="video-thumbnail">
+            <div class="video-title">Cozy Cat in Snow</div>
+            <div class="video-details">Channel Name • 1M views • 3 days ago</div>
+        </div>
+        <div class="video-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Eurasian_blue_tit_Lancashire.jpg/640px-Eurasian_blue_tit_Lancashire.jpg" alt="Video Thumbnail 2" class="video-thumbnail">
+            <div class="video-title">Bird in the Wild</div>
+            <div class="video-details">Nature Channel • 500K views • 2 weeks ago</div>
+        </div>
+        <div class="video-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Onion_domes_of_Cathedral_of_the_Annunciation.JPG/640px-Onion_domes_of_Cathedral_of_the_Annunciation.JPG" alt="Video Thumbnail 3" class="video-thumbnail">
+            <div class="video-title">Beautiful Architecture</div>
+            <div class="video-details">Travel Channel • 200K views • 1 month ago</div>
+        </div>
+        <div class="video-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Soyuz_TMA-16_approaching_ISS.jpg/640px-Soyuz_TMA-16_approaching_ISS.jpg" alt="Video Thumbnail 4" class="video-thumbnail">
+            <div class="video-title">Space Expedition</div>
+            <div class="video-details">Science Channel • 800K views • 3 months ago</div>
+        </div>
+        <div class="video-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/German-Shepherd-dog-rainbow-shake.jpg/640px-German-Shepherd-dog-rainbow-shake.jpg" alt="Video Thumbnail 5" class="video-thumbnail">
+            <div class="video-title">Happy Dog</div>
+            <div class="video-details">Pet Channel • 1.2M views • 1 week ago</div>
+        </div>
+    </div>
+</body>
+</html>

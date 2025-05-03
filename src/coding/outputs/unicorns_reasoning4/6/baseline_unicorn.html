@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #87CEEB, #f0f8ff);
+        }
+        .unicorn-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .body {
+            width: 200px;
+            height: 150px;
+            background: white;
+            border-radius: 50% 50% 40% 40%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .head {
+            width: 120px;
+            height: 110px;
+            background: white;
+            border-radius: 50% 50% 40% 40%;
+            position: absolute;
+            top: -70px;
+            left: 65px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        .horn {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 50px solid gold;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+        .mane {
+            position: absolute;
+            top: 0;
+            left: -20px;
+            width: 150%;
+            height: 120%;
+            background: linear-gradient(135deg, pink, purple, blue);
+            border-radius: 50%;
+            clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+            animation: flowing 3s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+        @keyframes flowing {
+            from {
+                transform: translateX(-10%) rotate(-5deg);
+            }
+            to {
+                transform: translateX(10%) rotate(5deg);
+            }
+        }
+        .eye {
+            position: absolute;
+            top: 40%;
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            background: black;
+            border-radius: 50%;
+        }
+        .eye::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+        .ear {
+            position: absolute;
+            top: -20px;
+            left: 85%;
+            width: 20px;
+            height: 40px;
+            background: white;
+            border-radius: 50% 50% 0% 0%;
+            transform: rotate(30deg);
+        }
+        .ear::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 2px;
+            width: 16px;
+            height: 30px;
+            background: pink;
+            border-radius: 50% 50% 0% 0%;
+        }
+        .leg-container {
+            position: absolute;
+            top: 100px;
+            left: 10px;
+            display: flex;
+            justify-content: space-between;
+            width: 180px;
+        }
+        .leg {
+            width: 30px;
+            height: 100px;
+            background: white;
+            border-radius: 20% 20% 0 0;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .tail {
+            position: absolute;
+            width: 20px;
+            height: 80px;
+            background: linear-gradient(to top, purple, pink);
+            border-radius: 50%;
+            bottom: 10px;
+            left: 10px;
+            animation: swaying 2s infinite alternate ease-in-out;
+        }
+        @keyframes swaying {
+            from {
+                transform: rotate(-25deg);
+            }
+            to {
+                transform: rotate(25deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn-container">
+        <div class="body">
+            <div class="tail"></div>
+            <div class="leg-container">
+                <div class="leg front"></div>
+                <div class="leg front"></div>
+                <div class="leg back"></div>
+                <div class="leg back"></div>
+            </div>
+        </div>
+        <div class="head">
+            <div class="mane"></div>
+            <div class="horn"></div>
+            <div class="eye"></div>
+            <div class="ear"></div>
+        </div>
+    </div>
+</body>
+</html>

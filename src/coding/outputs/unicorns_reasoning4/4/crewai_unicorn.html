@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Rendering Competition</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #f8c3d0, #cceffc);
+        }
+        .unicorn {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+        .head, .body, .leg, .tail, .horn, .eye, .mane {
+            position: absolute;
+            background: #fff;
+            border: 2px solid #000;
+        }
+        .head {
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            left: 100px;
+            border-radius: 50%;
+        }
+        .body {
+            width: 150px;
+            height: 100px;
+            top: 120px;
+            left: 80px;
+            border-radius: 50px 50px 0 0;
+        }
+        .leg {
+            width: 30px;
+            height: 70px;
+            background: #ffe2e6;
+            border-radius: 0 0 50px 50px;
+        }
+        .leg.front {
+            top: 220px;
+            left: 90px;
+        }
+        .leg.back {
+            top: 220px;
+            left: 190px;
+        }
+        .tail {
+            width: 80px;
+            height: 30px;
+            top: 160px;
+            left: 20px;
+            background: linear-gradient(to right, #f1a6c7, #f8c3d0, #cceffc);
+            border-radius: 50px;
+        }
+        .horn {
+            width: 20px;
+            height: 60px;
+            background: #ffe2e6;
+            top: 0;
+            left: 120px;
+            border-radius: 0 0 50px 50px;
+        }
+        .eye {
+            width: 10px;
+            height: 10px;
+            top: 80px;
+            left: 120px;
+            background: #000;
+            border-radius: 50%;
+        }
+        .mane {
+            width: 30px;
+            height: 70px;
+            top: 50px;
+            left: 70px;
+            background: linear-gradient(to bottom, #ffebcd, #ffccff);
+            border-radius: 0 50px 50px 0;
+        }
+        @keyframes blink {
+            0%, 30%, 70%, 100% {
+                height: 10px;
+            }
+            50% {
+                height: 3px;
+            }
+        }
+        .eye .blink {
+            animation: blink 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn" aria-label="A colorful unicorn with blinking eyes">
+        <div class="head" aria-label="The unicorn's head">
+            <div class="eye" aria-label="The unicorn's eye">
+                <div class="blink"></div>
+            </div>
+        </div>
+        <div class="body" aria-label="The unicorn's body"></div>
+        <div class="leg front" aria-label="Front leg"></div>
+        <div class="leg back" aria-label="Back leg"></div>
+        <div class="tail" aria-label="The unicorn's tail"></div>
+        <div class="horn" aria-label="The unicorn's horn"></div>
+        <div class="mane" aria-label="The unicorn's mane"></div>
+    </div>
+</body>
+</html>

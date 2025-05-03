@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Rendering</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to top right, #ffccff, #ccffff);
+            overflow: hidden;
+        }
+        .unicorn {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .body {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ff99cc, #ff66cc);
+            border-radius: 60px 60px 40px 40px;
+        }
+        .head {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ff99cc, #ff66cc);
+            border-radius: 50%;
+        }
+        .leg {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 60px;
+            background: #ff66cc;
+            border-radius: 10px;
+        }
+        .leg.front {
+            left: 30px;
+        }
+        .leg.back {
+            right: 30px;
+        }
+        .tail {
+            position: absolute;
+            bottom: 10px;
+            left: -20px;
+            width: 60px;
+            height: 20px;
+            background: linear-gradient(to right, #ff99cc, #ff66cc);
+            border-radius: 20px;
+            animation: tail-move 2s infinite;
+        }
+        @keyframes tail-move {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(15deg); }
+        }
+        .mane {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ffccff, #ff99cc);
+            border-radius: 50%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: mane-move 2s infinite;
+        }
+        @keyframes mane-move {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            50% { transform: translateX(-50%) rotate(10deg); }
+        }
+        .horn {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 40px;
+            background: linear-gradient(to bottom, #ffffcc, #ffccff);
+            border-radius: 5px;
+            animation: horn-glow 1.5s infinite;
+        }
+        @keyframes horn-glow {
+            0%, 100% { box-shadow: 0 0 10px #ffccff; }
+            50% { box-shadow: 0 0 20px #ffccff; }
+        }
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: sparkle-twinkle 1s infinite;
+        }
+        @keyframes sparkle-twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .sparkle:nth-child(1) { top: 10px; left: 20px; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 30px; left: 80px; animation-delay: 0.2s; }
+        .sparkle:nth-child(3) { top: 50px; left: 140px; animation-delay: 0.4s; }
+        .sparkle:nth-child(4) { top: 70px; left: 60px; animation-delay: 0.6s; }
+        .sparkle:nth-child(5) { top: 90px; left: 100px; animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <div class="unicorn">
+        <div class="body"></div>
+        <div class="head"></div>
+        <div class="leg front"></div>
+        <div class="leg back"></div>
+        <div class="tail"></div>
+        <div class="mane"></div>
+        <div class="horn"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+    </div>
+</body>
+</html>

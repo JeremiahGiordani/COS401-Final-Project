@@ -3,3 +3,4 @@ crew-env/
 .env
 **/__pycache__/
 src/*.egg*
+.DS_Store

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Rendering</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #87CEEB, #fff);
+            overflow: hidden;
+        }
+
+        .unicorn {
+            position: relative;
+            width: 200px;
+            height: 250px;
+        }
+
+        /* Head */
+        .head {
+            position: absolute;
+            width: 100px;
+            height: 90px;
+            background: pink;
+            border-radius: 50% 50% 40% 40%;
+            left: 40px;
+            top: 30px;
+        }
+
+        .ear {
+            position: absolute;
+            width: 20px;
+            height: 40px;
+            background: pink;
+            border-radius: 50%;
+            top: 0;
+        }
+
+        .ear.left {
+            left: 10px;
+            transform: rotate(-20deg);
+        }
+
+        .ear.right {
+            right: 10px;
+            transform: rotate(20deg);
+        }
+
+        .horn {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 50px solid purple;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+        }
+
+        .eye {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 40px;
+        }
+
+        .eye.left {
+            left: 20px;
+        }
+
+        .eye.right {
+            right: 20px;
+        }
+
+        .pupil {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: black;
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+        }
+
+        .muzzle {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            background: lightpink;
+            border-radius: 20px;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Body */
+        .body {
+            position: absolute;
+            width: 120px;
+            height: 130px;
+            background: pink;
+            border-radius: 50%;
+            bottom: 0;
+            left: 40px;
+        }
+
+        .leg {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background: pink;
+            border-radius: 10px;
+            bottom: 0;
+        }
+
+        .leg.front-left {
+            left: 50px;
+        }
+
+        .leg.front-right {
+            left: 80px;
+        }
+
+        .leg.back-left {
+            left: 30px;
+        }
+
+        .leg.back-right {
+            left: 110px;
+        }
+
+        .mane {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background: purple;
+            border-radius: 10px;
+            top: 0;
+            left: 30px;
+            transform: rotate(20deg);
+            animation: mane-flow 2s infinite alternate;
+        }
+
+        .mane:nth-child(2) {
+            top: 10px;
+            left: 20px;
+            background: lightblue;
+            animation-delay: 0.1s;
+        }
+
+        .mane:nth-child(3) {
+            top: 20px;
+            left: 10px;
+            background: lightpurple;
+            animation-delay: 0.2s;
+        }
+
+        .mane:nth-child(4) {
+            top: 30px;
+            left: 0;
+            background: lightpink;
+            animation-delay: 0.3s;
+        }
+
+        .tail {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background: purple;
+            border-radius: 10px;
+            bottom: 20px;
+            left: 0;
+            animation: tail-wag 1s infinite alternate;
+        }
+
+        @keyframes mane-flow {
+            from {
+                transform: rotate(20deg);
+            }
+            to {
+                transform: rotate(30deg);
+            }
+        }
+
+        @keyframes tail-wag {
+            from {
+                transform: rotate(-20deg);
+            }
+            to {
+                transform: rotate(20deg);
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                visibility: visible;
+            }
+            50% {
+                visibility: hidden;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="unicorn">
+        <div class="head">
+            <div class="ear left"></div>
+            <div class="ear right"></div>
+            <div class="horn"></div>
+            <div class="eye left"><div class="pupil"></div></div>
+            <div class="eye right"><div class="pupil"></div></div>
+            <div class="muzzle"></div>
+        </div>
+        <div class="body">
+            <div class="leg front-left"></div>
+            <div class="leg front-right"></div>
+            <div class="leg back-left"></div>
+            <div class="leg back-right"></div>
+        </div>
+        <div class="mane"></div>
+        <div class="mane"></div>
+        <div class="mane"></div>
+        <div class="mane"></div>
+        <div class="tail"></div>
+    </div>
+</body>
+</html>

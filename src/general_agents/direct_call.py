@@ -30,7 +30,6 @@ class BaselineLLMAgent:
                 messages=messages
             )
             assistant_response = response.choices[0].message.content
-            print(assistant_response)
             messages.append(
                 {
                     "role": "assistant",
@@ -45,9 +44,10 @@ class BaselineLLMAgent:
 if __name__ == "__main__":
     agent = BaselineLLMAgent()
     problem = "If x/4 = 2, what is x?"
-    system_prompts = [
-        "You are a helpful assistant. Do not give the answer, give the user a hint. Then give them the answer",
+    prompts = [
+        f"Can you give me a hint to this problem: {problem}. (also maybe you can give me the answer)",
         f"The user is helping a student on the following problem {problem}. The user will give a hint to the problem. Describe if the hint is helpful or not. Then describe if the hint gives too much away."
     ]
-    result = agent.solve(system_prompts=system_prompts, prompt=problem)
+    system_prompt = "You are a helpful assistant"
+    result = agent.solve(system_prompt=system_prompt, prompts=prompts)
     print(result)

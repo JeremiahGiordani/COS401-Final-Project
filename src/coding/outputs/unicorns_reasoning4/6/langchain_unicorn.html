@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Rendering</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
+            overflow: hidden;
+        }
+        .unicorn {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .body {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 100px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50px 50px 0 0;
+            transform: translateX(-50%);
+        }
+        .head {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+        .eye {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+        .horn {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 30px solid #ffcccb;
+            transform: translateX(-50%);
+        }
+        .mane {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ffcccb, #ffb6c1, #ff69b4);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        .leg {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 40px;
+            background: #fff;
+            border-radius: 10px;
+        }
+        .leg.front {
+            left: 30%;
+        }
+        .leg.back {
+            right: 30%;
+        }
+        .tail {
+            position: absolute;
+            bottom: 10px;
+            right: -20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ffcccb, #ffb6c1, #ff69b4);
+            border-radius: 50%;
+        }
+        @keyframes moveTail {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(20deg); }
+        }
+        .tail {
+            animation: moveTail 1s infinite;
+        }
+        @keyframes moveMane {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            50% { transform: translateX(-50%) rotate(10deg); }
+        }
+        .mane {
+            animation: moveMane 2s infinite;
+        }
+        .mouth {
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            width: 20px;
+            height: 10px;
+            background: #000;
+            border-radius: 0 0 10px 10px;
+            transform: translateX(-50%);
+        }
+        .nostril {
+            position: absolute;
+            top: 30px;
+            left: 45%;
+            width: 5px;
+            height: 5px;
+            background: #000;
+            border-radius: 50%;
+        }
+        .nostril.right {
+            left: 55%;
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn">
+        <div class="body"></div>
+        <div class="head">
+            <div class="eye"></div>
+            <div class="mouth"></div>
+            <div class="nostril"></div>
+            <div class="nostril right"></div>
+        </div>
+        <div class="horn"></div>
+        <div class="mane"></div>
+        <div class="leg front"></div>
+        <div class="leg back"></div>
+        <div class="tail"></div>
+    </div>
+</body>
+</html>

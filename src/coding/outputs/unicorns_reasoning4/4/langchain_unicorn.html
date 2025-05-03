@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Rendering</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #a1c4fd, #c2e9fb);
+        }
+        .unicorn {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .body {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            width: 100px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50% 50% 0 0;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .head {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+        .eye {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 12px;
+            height: 12px;
+            background: #000;
+            border-radius: 50%;
+            transform: translateX(-50%);
+        }
+        .horn {
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            width: 10px;
+            height: 40px;
+            background: linear-gradient(to top, #ff9a9e, #fad0c4);
+            border-radius: 50% 50% 0 0;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+        .mane {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            border-radius: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            animation: flow 3s infinite;
+            z-index: 0;
+        }
+        .leg {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 40px;
+            background: #fff;
+            border-radius: 10px;
+        }
+        .leg1 { left: 40%; }
+        .leg2 { left: 60%; }
+        .tail {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            border-radius: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            animation: flow 3s infinite;
+            z-index: 0;
+        }
+        @keyframes flow {
+            0%, 100% { transform: translateX(-50%) rotate(45deg); }
+            50% { transform: translateX(-50%) rotate(60deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn">
+        <div class="body"></div>
+        <div class="head">
+            <div class="eye"></div>
+        </div>
+        <div class="horn"></div>
+        <div class="mane"></div>
+        <div class="leg leg1"></div>
+        <div class="leg leg2"></div>
+        <div class="tail"></div>
+    </div>
+</body>
+</html>

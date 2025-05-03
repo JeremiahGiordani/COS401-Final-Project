@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Replica</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+        .container {
+            text-align: center;
+        }
+        .logo {
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            width: 100%;
+            max-width: 580px;
+            height: 44px;
+            padding: 0 16px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            box-shadow: 0px 1px 6px rgba(32, 33, 36, 0.28);
+            border-radius: 24px;
+            outline: none;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .button {
+            margin: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: #5f6368;
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            border: 1px solid #dadce0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google Logo" class="logo">
+        <form>
+            <input type="text" class="search-bar" placeholder="Search Google or type a URL">
+            <div class="buttons">
+                <input type="submit" value="Google Search" class="button">
+                <input type="button" value="I'm Feeling Lucky" class="button">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

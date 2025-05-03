@@ -44,6 +44,7 @@ def main():
 
     agents = {
         "baseline": BaselineLLMAgent(),
+        "reasoning": BaselineLLMAgent(model="o3-mini"),
         "pydantic": PydanticAgent(),
         "langchain": LangchainAgent(),
         "crewai": CrewAIAgent(),
@@ -56,8 +57,8 @@ def main():
         accuracy = sum(r["correct"] for r in results) / len(results)
         print(f"Accuracy for {name}: {accuracy:.2%}")
 
-        for r in results:
-            print(f"[{r['id']}] Correct: {r['correct']} | Response: {r['response']} | Solution: {r['solution']}")
+        # for r in results:
+        #     print(f"[{r['id']}] Correct: {r['correct']} | Response: {r['response']} | Solution: {r['solution']}")
 
 
 if __name__ == "__main__":

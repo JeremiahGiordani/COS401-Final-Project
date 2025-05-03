@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Scene SVG</title>
+</head>
+<body>
+    <svg width="100%" height="100vh" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:#2c3e50" />
+                <stop offset="100%" style="stop-color:#000000" />
+            </radialGradient>
+            <radialGradient id="planetGradient1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:#6a8caf" />
+                <stop offset="100%" style="stop-color:#354b63" />
+            </radialGradient>
+            <radialGradient id="planetGradient2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:#f39c12" />
+                <stop offset="100%" style="stop-color:#b37700" />
+            </radialGradient>
+            <radialGradient id="nebulaGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:rgba(200, 80, 255, 0.8);" />
+                <stop offset="100%" style="stop-color:rgba(100, 0, 150, 0);" />
+            </radialGradient>
+            <radialGradient id="cometGradient" cx="50%" cy="0%" r="50%">
+                <stop offset="0%" style="stop-color:white; stop-opacity:1" />
+                <stop offset="100%" style="stop-color:white; stop-opacity:0" />
+            </radialGradient>
+            <g id="twinklingStar">
+                <circle cx="0" cy="0" r="1" fill="white">
+                    <animate attributeName="opacity" from="1" to="0.5" dur="1s" repeatCount="indefinite" />
+                </circle>
+            </g>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#bgGradient)" />
+        <!-- Stars -->
+        <g>
+            <use href="#twinklingStar" x="100" y="50" />
+            <use href="#twinklingStar" x="300" y="100" />
+            <use href="#twinklingStar" x="500" y="80" />
+            <use href="#twinklingStar" x="700" y="150" />
+            <use href="#twinklingStar" x="400" y="300" />
+            <use href="#twinklingStar" x="600" y="200" />
+            <use href="#twinklingStar" x="250" y="400" />
+            <use href="#twinklingStar" x="500" y="450" />
+            <use href="#twinklingStar" x="700" y="500" />
+        </g>
+        <!-- Nebula -->
+        <g>
+            <path d="M200,300 Q250,350 200,400 Q150,450 100,400 Q50,350 100,300 Q150,250 200,300 Z" fill="url(#nebulaGradient)" />
+        </g>
+        <!-- Planets -->
+        <g>
+            <circle cx="150" cy="150" r="40" fill="url(#planetGradient1)" />
+            <circle cx="600" cy="100" r="60" fill="url(#planetGradient2)" />
+        </g>
+        <!-- Comet -->
+        <g>
+            <defs>
+                <path id="cometPath" d="M800,0 L0,600" />
+            </defs>
+            <ellipse cx="750" cy="50" rx="5" ry="10" fill="white">
+                <animateMotion dur="5s" repeatCount="indefinite">
+                    <mpath href="#cometPath" />
+                </animateMotion>
+            </ellipse>
+            <path d="M750,50 Q780,75 700,100" fill="none" stroke="url(#cometGradient)" />
+        </g>
+    </svg>
+</body>
+</html>

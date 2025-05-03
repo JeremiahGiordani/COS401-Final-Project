@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Unicorn</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to top right, #eef2ff, #d0e1ff);
+            margin: 0;
+            overflow: hidden;
+        }
+        .unicorn {
+            position: relative;
+            width: 250px;
+            height: 250px;
+        }
+        .unicorn .body {
+            position: absolute;
+            top: 40%;
+            left: 20%;
+            width: 150px;
+            height: 100px;
+            background: white;
+            border-radius: 100px 100px 0 0;
+            border: 2px solid #000;
+        }
+        .unicorn .head {
+            position: absolute;
+            top: 10%;
+            left: 60%;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #000;
+        }
+        .unicorn .horn {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 10px;
+            height: 50px;
+            background: linear-gradient(to bottom, #ffd700, #ffa500);
+            transform: translateX(-50%) rotate(45deg);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .unicorn .eye {
+            position: absolute;
+            top: 35%;
+            left: 25%;
+            width: 10px;
+            height: 10px;
+            background: black;
+            border-radius: 50%;
+        }
+        .unicorn .ear {
+            position: absolute;
+            top: 0;
+            left: 75%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50% 50% 0 0;
+            border: 2px solid #000;
+            transform: rotate(-45deg);
+        }
+        .unicorn .tail {
+            position: absolute;
+            bottom: 0;
+            left: -10%;
+            width: 50px;
+            height: 100px;
+            background: linear-gradient(white, pink, purple);
+            border-radius: 50% 50% 0 0;
+            transform: rotate(-30deg);
+            transform-origin: 0 100%;
+            animation: wag 2s infinite;
+        }
+        @keyframes wag {
+            0%, 100% { transform: rotate(-30deg); }
+            50% { transform: rotate(-15deg); }
+        }
+        .unicorn .leg {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            height: 60px;
+            background: white;
+            border: 2px solid #000;
+        }
+        .unicorn .leg.front {
+            left: 15%;
+        }
+        .unicorn .leg.back {
+            right: 15%;
+        }
+        .unicorn .mane {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 40px;
+            height: 70px;
+            background: linear-gradient(to bottom, purple, pink, white);
+            border-radius: 50%;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform: translateX(-50%);
+            animation: sparkle 5s infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn" onclick="nodHead()" onmouseover="wagTail()">
+        <div class="body"></div>
+        <div class="head">
+            <div class="horn"></div>
+            <div class="eye"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="leg front"></div>
+        <div class="leg back"></div>
+        <div class="tail"></div>
+        <div class="mane"></div>
+    </div>
+    <script>
+        function nodHead() {
+            const head = document.querySelector('.unicorn .head');
+            head.style.animation = 'nod 1s';
+            head.addEventListener('animationend', () => {
+                head.style.animation = '';
+            });
+        }
+
+        function wagTail() {
+            const tail = document.querySelector('.unicorn .tail');
+            tail.style.animation = 'wag-tail 2s infinite';
+        }
+
+        document.querySelector('.unicorn').addEventListener('mouseleave', () => {
+            const tail = document.querySelector('.unicorn .tail');
+            tail.style.animation = 'wag 2s infinite';
+        });
+
+        @keyframes nod {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-15deg); }
+            100% { transform: rotate(0deg); }
+        }
+    </script>
+</body>
+</html>

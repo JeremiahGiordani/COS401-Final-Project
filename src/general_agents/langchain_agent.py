@@ -16,29 +16,31 @@ class LangchainAgent:
             api_version=env.API_VERSION,
         )
 
-
+        # From prior implementation
         self.prompt = ChatPromptTemplate.from_messages([
             ("system", "{system_prompt}"),
             ("human", "{user_prompt}")
         ])
 
 
-    def solve(self, system_prompts: list[str], prompt: str) -> str:
+    def solve(self, system_prompt: str, prompts: list[str]) -> str:
+        messages = [{"role": "system", "content": system_prompt}]
 
-        current_user_prompt = prompt
-        for system_prompt in system_prompts:
-            messages = self.prompt.invoke({"system_prompt": system_prompt, "user_prompt": current_user_prompt})
+        for prompt in prompts:
+            messages.append({"role": "user", "content": prompt})
             response = self.llm.invoke(messages)
-            current_user_prompt = response.content
+            response = response.content
+            messages.append({"role": "assistant", "content": response})
 
-        return response.content
+        return response
 
 if __name__ == "__main__":
     agent = LangchainAgent()
     problem = "If x/4 = 2, what is x?"
-    system_prompts = [
-        "You are a helpful assistant. Do not give the answer, give the user a hint. Then give them the answer",
-        f"The user is helping a student on the following problem {problem}. The user will give a hint to the problem. Describe if the hint is helpful or not. Then describe if the hint gives too much away."
+    prompts = [
+        f"Can you give me a hint to this problem: {problem}",
+        f"Sorry, can you clarify?"
     ]
-    result = agent.solve(system_prompts=system_prompts, prompt=problem)
+    system_prompt = "You are a helpful assistant"
+    result = agent.solve(system_prompt=system_prompt, prompts=prompts)
     print(result)

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 5 weekdays + 1 for time labels */
+            grid-template-rows: 50px repeat(16, 1fr); /* Header + 16 time slots */
+            gap: 1px;
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: #eaeaea;
+        }
+        .day, .time-label {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            height: 50px;
+        }
+        .time-label {
+            grid-column: 1;
+        }
+        .time-slot {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            height: 30px;
+            position: relative;
+        }
+        .time-slot.highlight {
+            background-color: #cce4ff;
+        }
+        .day:not(:first-child) {
+            grid-column: span 1;
+        }
+        .event {
+            background-color: #3f51b5;
+            color: white;
+            position: absolute;
+            border: 1px solid #303f9f;
+            box-sizing: border-box;
+            padding: 2px;
+            font-size: 14px;
+            user-select: none;
+            cursor: pointer;
+        }
+        .event-form {
+            position: absolute;
+            display: none;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .event-form input, .event-form button {
+            display: block;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Weekly Calendar</h1>
+    <div class="calendar" id="calendar">
+        <div class="time-label"></div>
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+        <div class="day">Friday</div>
+        <!-- Time slots and labels will be generated using JavaScript -->
+    </div>
+
+    <div class="event-form" id="event-form">
+        <input type="text" id="event-name" placeholder="Event Name">
+        <button id="save-event">Save</button>
+        <button id="cancel-event">Cancel</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendar = document.getElementById('calendar');
+            const startHour = 9;
+            const endHour = 17;
+            const timeSlots = [];
+
+            // Generate time slots and labels
+            for (let i = startHour; i <= endHour; i++) {
+                for (let j = 0; j < 2; j++) {
+                    const time = `${i % 12 === 0 ? 12 : i % 12}:${j ? '30' : '00'} ${i < 12 ? 'AM' : 'PM'}`;
+                    let timeSlot;
+                    if (j === 0) {
+                        const timeLabel = document.createElement('div');
+                        timeLabel.className = 'time-label';
+                        timeLabel.textContent = time;
+                        calendar.appendChild(timeLabel);
+                    }
+                    for (let d = 1; d <= 5; d++) {
+                        timeSlot = document.createElement('div');
+                        timeSlot.className = 'time-slot';
+                        timeSlot.dataset.time = `${i}:${j ? '30' : '00'}`;
+                        calendar.appendChild(timeSlot);
+                        timeSlots.push([d, timeSlot]); // store time slot with its day
+                    }
+                }
+            }
+
+            let isDragging = false;
+            let startElement = null;
+            let startTime = null;
+            let endTime = null;
+            let currentDay = null;
+            let selectedSlots = [];
+
+            calendar.addEventListener('mousedown', function(e) {
+                if (e.target.classList.contains('time-slot')) {
+                    isDragging = true;
+                    startElement = e.target;
+                    startTime = e.target.dataset.time;
+                    currentDay = timeSlots.find(slot => slot[1] === startElement)[0];
+                    selectedSlots.push(startElement);
+                    startElement.classList.add('highlight');
+                }
+            });
+
+            calendar.addEventListener('mousemove', function(e) {
+                if (isDragging && e.target.classList.contains('time-slot')) {
+                    const endElement = e.target;
+                    const endDay = timeSlots.find(slot => slot[1] === endElement)[0];
+                    if (currentDay === endDay) {
+                        clearHighlights();
+                        selectedSlots = timeSlots.filter(slot => 
+                            slot[0] === currentDay && (
+                                (slot[1].dataset.time >= startTime && slot[1].dataset.time <= endElement.dataset.time) || 
+                                (slot[1].dataset.time >= endElement.dataset.time && slot[1].dataset.time <= startTime)
+                            )
+                        ).map(slot => slot[1]);
+                        selectedSlots.forEach(slot => slot.classList.add('highlight'));
+                    }
+                }
+            });
+
+            calendar.addEventListener('mouseup', function(e) {
+                if (isDragging) {
+                    isDragging = false;
+                    if (e.target.classList.contains('time-slot')) {
+                        endTime = e.target.dataset.time;
+                        showEventForm(startElement, startTime, endTime);
+                    }
+                }
+            });
+
+            function clearHighlights(){
+                selectedSlots.forEach(slot => slot.classList.remove('highlight'));
+            }
+
+            function showEventForm(startElement, startTime, endTime){
+                const eventForm = document.getElementById('event-form');
+                const calendarRect = calendar.getBoundingClientRect();
+                eventForm.style.left = `${startElement.offsetLeft + calendarRect.left}px`;
+                eventForm.style.top = `${startElement.offsetTop + calendarRect.top - 30}px`;
+                eventForm.style.display = 'block';
+                document.getElementById('save-event').onclick = function() {
+                    createEvent(startElement, startTime, endTime, document.getElementById('event-name').value);
+                    eventForm.style.display = 'none';
+                }
+                document.getElementById('cancel-event').onclick = function() {
+                    clearHighlights();
+                    eventForm.style.display = 'none';
+                }
+            }
+
+            function createEvent(startElement, startTime, endTime, eventName) {
+                const event = document.createElement('div');
+                event.className = 'event';
+                event.textContent = `${eventName ? eventName : `${startTime} - ${endTime}`}`;
+                event.style.top = startElement.offsetTop + 'px';
+                event.style.height = `${selectedSlots.length * 30}px`;
+                event.style.left = startElement.offsetLeft + 'px';
+                event.style.width = startElement.offsetWidth + 'px';
+                calendar.appendChild(event);
+                
+                const eventObj = {
+                    day: currentDay,
+                    start: startTime,
+                    end: endTime
+                };
+
+                selectedSlots.forEach(slot => {
+                    slot.classList.remove('highlight');
+                    slot.dataset.event = JSON.stringify(eventObj);
+                });
+
+                event.addEventListener('click', function() {
+                    if (confirm('Delete this event?')) {
+                        event.remove();
+                        selectedSlots.forEach(slot => {
+                            delete slot.dataset.event;
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

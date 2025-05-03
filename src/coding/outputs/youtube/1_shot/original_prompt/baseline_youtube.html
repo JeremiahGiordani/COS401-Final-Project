@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Replica</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #FF0000;
+            color: white;
+            padding: 10px 20px;
+        }
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar .search-bar {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            margin: 0 20px;
+        }
+        .navbar .search-bar input {
+            width: 100%;
+            padding: 7px;
+            border: none;
+            border-radius: 2px 0 0 2px;
+        }
+        .navbar .search-bar .search-btn {
+            padding: 7px 15px;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 0 2px 2px 0;
+            cursor: pointer;
+        }
+        .navbar .icon-buttons i {
+            margin-left: 20px;
+            cursor: pointer;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #f9f9f9;
+            height: 100vh;
+            position: fixed;
+            padding-top: 60px;
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px 20px;
+            color: #333;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 80px 20px 20px 20px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .video-card {
+            display: flex;
+            flex-direction: column;
+        }
+        img {
+            width: 100%;
+            border-radius: 4px;
+        }
+        .video-description {
+            padding: 10px 0;
+        }
+        .video-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        .video-channel,
+        .video-views {
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">YouTube</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+            <button class="search-btn">Search</button>
+        </div>
+        <div class="icon-buttons">
+            <i>🔔</i>
+            <i>📂</i>
+            <i>🔍</i>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <a href="#">Home</a>
+        <a href="#">Subscriptions</a>
+        <a href="#">Library</a>
+    </div>
+
+    <div class="content">
+        <div class="video-grid">
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/1599px-Felis_catus-cat_on_snow.jpg?20190920093216" alt="Video Thumbnail">
+                <div class="video-description">
+                    <div class="video-title">Cat in the Snow</div>
+                    <div class="video-channel">Feline Friends</div>
+                    <div class="video-views">1.2M views</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Eurasian_blue_tit_Lancashire.jpg/640px-Eurasian_blue_tit_Lancashire.jpg" alt="Video Thumbnail">
+                <div class="video-description">
+                    <div class="video-title">Bird Watching in Lancashire</div>
+                    <div class="video-channel">Bird Enthusiasts</div>
+                    <div class="video-views">823K views</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Onion_domes_of_Cathedral_of_the_Annunciation.JPG/640px-Onion_domes_of_Cathedral_of_the_Annunciation.JPG" alt="Video Thumbnail">
+                <div class="video-description">
+                    <div class="video-title">Tour of Russian Cathedrals</div>
+                    <div class="video-channel">Explore Russia</div>
+                    <div class="video-views">412K views</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Soyuz_TMA-16_approaching_ISS.jpg/640px-Soyuz_TMA-16_approaching_ISS.jpg" alt="Video Thumbnail">
+                <div class="video-description">
+                    <div class="video-title">ISS Docking Simulation</div>
+                    <div class="video-channel">Space Explorers</div>
+                    <div class="video-views">2M views</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/German-Shepherd-dog-rainbow-shake.jpg/640px-German-Shepherd-dog-rainbow-shake.jpg" alt="Video Thumbnail">
+                <div class="video-description">
+                    <div class="video-title">German Shepherd Tricks</div>
+                    <div class="video-channel">Dog Trainers</div>
+                    <div class="video-views">965K views</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

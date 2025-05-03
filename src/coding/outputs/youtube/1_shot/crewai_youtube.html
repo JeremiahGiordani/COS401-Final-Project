@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            background-color: #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            height: 20px;
+        }
+        .header input {
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 2px 0 0 2px;
+            width: 400px;
+        }
+        .header button {
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-left: 0;
+            background-color: #f8f8f8;
+            cursor: pointer;
+        }
+        .header-icons img {
+            height: 24px;
+            margin-left: 10px;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #fff;
+            box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+            padding-top: 10px;
+        }
+        .sidebar-item {
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .sidebar-item img {
+            height: 24px;
+            margin-right: 16px;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .video {
+            width: 240px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .video img {
+            width: 100%;
+        }
+        .video-details {
+            padding: 10px;
+        }
+        .video-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .video-channel, .video-views {
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube Logo">
+        <div>
+            <input type="text" placeholder="Search">
+            <button><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/640px-Magnifying_glass_icon.svg.png" alt="Search Icon" height="24"></button>
+        </div>
+        <div class="header-icons">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Noun_Project_cloud_upload_icon_411593_cc.svg/640px-Noun_Project_cloud_upload_icon_411593_cc.svg.png" alt="Upload Icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bell-solid.svg/640px-Bell-solid.svg.png" alt="Bell Icon">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/VK_icons_profile_28.svg/640px-VK_icons_profile_28.svg.png" alt="Profile Icon">
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Home_free_icon.svg/640px-Home_free_icon.svg.png" alt="Home Icon">
+                <span>Home</span>
+            </div>
+            <div class="sidebar-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/VK_icons_history_outline_56.svg/640px-VK_icons_history_outline_56.svg.png" alt="History Icon">
+                <span>History</span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="video">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/1599px-Felis_catus-cat_on_snow.jpg?20190920093216" alt="Video Thumbnail">
+                <div class="video-details">
+                    <div class="video-title">Cat in the Snow</div>
+                    <div class="video-channel">Animal Channel</div>
+                    <div class="video-views">1M views</div>
+                </div>
+            </div>
+            <div class="video">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Eurasian_blue_tit_Lancashire.jpg/640px-Eurasian_blue_tit_Lancashire.jpg" alt="Video Thumbnail">
+                <div class="video-details">
+                    <div class="video-title">Bird Watching</div>
+                    <div class="video-channel">Nature Channel</div>
+                    <div class="video-views">500K views</div>
+                </div>
+            </div>
+            <div class="video">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Onion_domes_of_Cathedral_of_the_Annunciation.JPG/640px-Onion_domes_of_Cathedral_of_the_Annunciation.JPG" alt="Video Thumbnail">
+                <div class="video-details">
+                    <div class="video-title">Beautiful Architecture</div>
+                    <div class="video-channel">History Channel</div>
+                    <div class="video-views">800K views</div>
+                </div>
+            </div>
+            <div class="video">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Soyuz_TMA-16_approaching_ISS.jpg/640px-Soyuz_TMA-16_approaching_ISS.jpg" alt="Video Thumbnail">
+                <div class="video-details">
+                    <div class="video-title">Space Walk</div>
+                    <div class="video-channel">Science Channel</div>
+                    <div class="video-views">2M views</div>
+                </div>
+            </div>
+            <div class="video">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/German-Shepherd-dog-rainbow-shake.jpg/640px-German-Shepherd-dog-rainbow-shake.jpg" alt="Video Thumbnail">
+                <div class="video-details">
+                    <div class="video-title">Dog Tricks</div>
+                    <div class="video-channel">Animal Channel</div>
+                    <div class="video-views">1.5M views</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

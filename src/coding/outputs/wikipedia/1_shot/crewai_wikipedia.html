@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wikipedia Article</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #034694;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .toc {
+            border: 1px solid #c0c0c0;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .toc h2 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc ul li {
+            margin: 5px 0;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .reference {
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        Wikipedia
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <a href="#">Main Page</a>
+            <a href="#">Contents</a>
+            <a href="#">Current events</a>
+            <a href="#">Random article</a>
+            <a href="#">About Wikipedia</a>
+            <a href="#">Contact us</a>
+            <a href="#">Donate</a>
+        </div>
+        <div class="content">
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ul>
+                    <li><a href="#section1">1. Introduction</a></li>
+                    <li><a href="#section2">2. History</a></li>
+                    <li><a href="#section3">3. Applications</a></li>
+                    <li><a href="#section4">4. Challenges</a></li>
+                </ul>
+            </div>
+            <div id="section1" class="section">
+                <h2>1. Introduction</h2>
+                <p>An introduction to the topic. This section provides a brief overview and background of the subject matter. <span class="reference">[1]</span></p>
+            </div>
+            <div id="section2" class="section">
+                <h2>2. History</h2>
+                <p>This section delves into the history and evolution of the topic over time. <span class="reference">[2]</span></p>
+            </div>
+            <div id="section3" class="section">
+                <h2>3. Applications</h2>
+                <p>Various applications and use-cases of the subject matter are discussed here. <span class="reference">[3]</span></p>
+            </div>
+            <div id="section4" class="section">
+                <h2>4. Challenges</h2>
+                <p>This section outlines the challenges and issues associated with the topic. <span class="reference">[4]</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

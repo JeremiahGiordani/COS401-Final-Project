@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Scene</title>
+</head>
+<body>
+    <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background Gradient -->
+        <defs>
+            <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:darkblue;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:black;stop-opacity:1" />
+            </radialGradient>
+            <radialGradient id="planetGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:purple;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:lightblue;stop-opacity:1" />
+            </radialGradient>
+            <radialGradient id="ringGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" style="stop-color:rgba(255,255,255,0.5);stop-opacity:0.5" />
+                <stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" />
+            </radialGradient>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+        <!-- Background -->
+        <rect width="100%" height="100%" fill="url(#bgGradient)" />
+        <!-- Stars -->
+        <circle cx="100" cy="100" r="2" fill="white" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="200" cy="150" r="1.5" fill="lightyellow" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="300" cy="50" r="2" fill="white" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="400" cy="200" r="1" fill="lightyellow" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="500" cy="100" r="2" fill="white" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="600" cy="300" r="1.5" fill="lightyellow" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="700" cy="400" r="2" fill="white" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="750" cy="250" r="1" fill="lightyellow" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" />
+        </circle>
+        <!-- Planet with Rings -->
+        <g transform="translate(400,300)">
+            <circle cx="0" cy="0" r="70" fill="url(#planetGradient)">
+                <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="30s" repeatCount="indefinite" />
+            </circle>
+            <ellipse cx="0" cy="0" rx="100" ry="30" fill="url(#ringGradient)" stroke="white" stroke-width="2" />
+        </g>
+        <!-- Moons -->
+        <circle cx="500" cy="250" r="10" fill="gray">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="12s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="450" cy="350" r="7" fill="brown">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="18s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="550" cy="400" r="5" fill="lightgray">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="20s" repeatCount="indefinite" />
+        </circle>
+        <!-- Spaceship -->
+        <g transform="translate(600,400)">
+            <polygon points="0,-10 20,0 0,10 -20,0" fill="silver" stroke="gray" stroke-width="1" />
+            <circle cx="0" cy="0" r="3" fill="blue" />
+            <polygon points="0,-5 10,0 0,5 -10,0" fill="red" />
+            <animateTransform attributeName="transform" type="translate" from="0,0" to="-800,-400" dur="15s" repeatCount="indefinite" />
+        </g>
+    </svg>
+</body>
+</html>

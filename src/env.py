@@ -8,4 +8,4 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 BASE_URL = "https://api-ai-sandbox.princeton.edu/"
 
-API_VERSION = "2024-06-01"
+API_VERSION = "2024-12-01-preview"

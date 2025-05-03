@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Layout</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #212121;
+            color: white;
+            padding: 10px 20px;
+        }
+        .navbar .logo {
+            font-size: 24px;
+        }
+        .navbar .search-bar {
+            width: 40%;
+            display: flex;
+            align-items: center;
+        }
+        .navbar .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 2px 0 0 2px;
+        }
+        .navbar .search-bar button {
+            padding: 8px;
+            border: none;
+            background-color: #444;
+            color: white;
+            border-radius: 0 2px 2px 0;
+            cursor: pointer;
+        }
+        .navbar .icons {
+            display: flex;
+            align-items: center;
+        }
+        .navbar .icons button {
+            margin-left: 10px;
+            padding: 8px;
+            border: none;
+            background-color: transparent;
+            color: white;
+            cursor: pointer;
+        }
+        .sidebar {
+            position: fixed;
+            top: 50px;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #212121;
+            color: white;
+            padding-top: 10px;
+            overflow-y: auto;
+        }
+        .sidebar .link {
+            padding: 15px;
+            display: block;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+        .sidebar .link:hover {
+            background-color: #383838;
+        }
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .video-card {
+            background-color: white;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .video-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+        .video-card .video-info {
+            margin-top: 10px;
+        }
+        .video-card .video-title {
+            font-size: 16px;
+            font-weight: bold;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+        .video-card .channel-name, .video-card .view-count {
+            font-size: 14px;
+            color: #606060;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">YouTube</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+            <button>🔍</button>
+        </div>
+        <div class="icons">
+            <button>🔔</button>
+            <button>⛅</button>
+        </div>
+    </div>
+    <div class="sidebar">
+        <a href="#" class="link">Home</a>
+        <a href="#" class="link">Subscriptions</a>
+        <a href="#" class="link">Library</a>
+    </div>
+    <div class="main-content">
+        <div class="video-grid">
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/1599px-Felis_catus-cat_on_snow.jpg?20190920093216" alt="Cat Video">
+                <div class="video-info">
+                    <div class="video-title">Cat in Snow - Cute Cat Compilation</div>
+                    <div class="channel-name">Cats Channel</div>
+                    <div class="view-count">1M views</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Eurasian_blue_tit_Lancashire.jpg/640px-Eurasian_blue_tit_Lancashire.jpg" alt="Bird Video">
+                <div class="video-info">
+                    <div class="video-title">Bird Watching: The Blue Tit</div>
+                    <div class="channel-name">Nature Watch</div>
+                    <div class="view-count">500k views</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Onion_domes_of_Cathedral_of_the_Annunciation.JPG/640px-Onion_domes_of_Cathedral_of_the_Annunciation.JPG" alt="Church Video">
+                <div class="video-info">
+                    <div class="video-title">Exploring the Annunciation Cathedral</div>
+                    <div class="channel-name">History Channel</div>
+                    <div class="view-count">750k views</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Soyuz_TMA-16_approaching_ISS.jpg/640px-Soyuz_TMA-16_approaching_ISS.jpg" alt="Space Video">
+                <div class="video-info">
+                    <div class="video-title">Soyuz TMA-16 Approaches ISS</div>
+                    <div class="channel-name">Space News</div>
+                    <div class="view-count">1.2M views</div>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/German-Shepherd-dog-rainbow-shake.jpg/640px-German-Shepherd-dog-rainbow-shake.jpg" alt="Dog Video">
+                <div class="video-info">
+                    <div class="video-title">German Shepherd Rainbow Shake</div>
+                    <div class="channel-name">Dog Lovers</div>
+                    <div class="view-count">300k views</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

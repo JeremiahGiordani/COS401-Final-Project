@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicorn Rendering</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f8ff;
+        }
+        .unicorn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        #unicorn {
+            width: 300px;
+            height: 300px;
+        }
+        .sparkle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: sparkle 1s infinite;
+        }
+        @keyframes sparkle {
+            0%, 100% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes wagTail {
+            0%, 100% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+        }
+        #tail {
+            transform-origin: top;
+            animation: wagTail 2s infinite ease-in-out;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            90%, 95% { opacity: 0; }
+        }
+        .eye {
+            animation: blink 5s infinite;
+        }
+        @keyframes hornGlow {
+            0%, 100% { stroke: #ff69b4; }
+            50% { stroke: #fff; }
+        }
+        .horn:hover {
+            animation: hornGlow 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="unicorn-container">
+        <svg id="unicorn" viewBox="0 0 64 64">
+            <g id="body">
+                <ellipse cx="32" cy="40" rx="16" ry="24" fill="#ffe4e1"/>
+                <ellipse cx="32" cy="28" rx="18" ry="12" fill="#ffe4e1"/>
+            </g>
+            <g id="legs">
+                <rect x="20" y="52" width="4" height="12" fill="#ffe4e1"/>
+                <rect x="28" y="52" width="4" height="12" fill="#ffe4e1"/>
+                <rect x="36" y="52" width="4" height="12" fill="#ffe4e1"/>
+                <rect x="44" y="52" width="4" height="12" fill="#ffe4e1"/>
+            </g>
+            <g id="head">
+                <circle cx="32" cy="16" r="12" fill="#ffe4e1"/>
+                <path class="horn" d="M32 4 L36 12 L28 12 Z" fill="#ff69b4" stroke="#ff69b4" stroke-width="1"/>
+                <circle class="eye" cx="30" cy="14" r="2" fill="#000"/>
+                <path d="M34 18 Q32 20 30 18" stroke="#000" fill="none"/>
+            </g>
+            <g id="mane">
+                <path d="M32 4 Q28 0 24 4" stroke="#ff69b4" fill="none" stroke-width="4"/>
+                <path d="M32 6 Q26 2 22 6" stroke="#ff69b4" fill="none" stroke-width="4"/>
+                <path d="M32 8 Q24 4 20 8" stroke="#ff69b4" fill="none" stroke-width="4"/>
+            </g>
+            <g id="tail">
+                <path d="M16 40 Q12 52 14 54 Q12 50 8 52 Q12 58 18 52 Q16 50 20 52 Q16 48 20 40" fill="#ff69b4"/>
+            </g>
+        </svg>
+    </div>
+    <script>
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.width = sparkle.style.height = `${Math.random() * 20 + 10}px`;
+            sparkle.style.top = `${Math.random() * 100}%`;
+            sparkle.style.left = `${Math.random() * 100}%`;
+            document.querySelector('.unicorn-container').appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        setInterval(createSparkle, 800);
+    </script>
+</body>
+</html>

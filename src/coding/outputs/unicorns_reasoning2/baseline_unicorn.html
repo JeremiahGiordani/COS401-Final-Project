@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Unicorn</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa;
+            overflow: hidden;
+        }
+        #unicorn-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        #unicorn-head, #unicorn-body, .leg, #unicorn-mane, #unicorn-tail, #unicorn-horn {
+            position: absolute;
+        }
+        #unicorn-head {
+            width: 50px;
+            height: 60px;
+            background: linear-gradient(120deg, #ffeb3b 30%, #fff59d);
+            border-radius: 50% 50% 40% 40%;
+            top: 30px;
+            left: 20px;
+        }
+        .eye {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+            top: 20px;
+            left: 18px;
+        }
+        #unicorn-body {
+            width: 120px;
+            height: 80px;
+            background: #fff;
+            border-radius: 60px 60px 50px 50px;
+            top: 70px;
+            left: 40px;
+        }
+        .leg {
+            width: 10px;
+            height: 40px;
+            background: #fff;
+            top: 140px;
+        }
+        .leg:nth-child(1) { left: 50px; }
+        .leg:nth-child(2) { left: 70px; }
+        .leg:nth-child(3) { left: 90px; }
+        .leg:nth-child(4) { left: 110px; }
+        #unicorn-mane {
+            width: 10px;
+            height: 70px;
+            background: radial-gradient(circle, #ff69b4, #ff4081);
+            border-radius: 30%;
+            top: 0;
+            left: 30px;
+            animation: wave 3s infinite ease-in-out;
+        }
+        #unicorn-tail {
+            width: 40px;
+            height: 80px;
+            background: linear-gradient(120deg, #ff69b4, #ff4081);
+            border-radius: 50%;
+            top: 80px;
+            left: 140px;
+            animation: wave 3s infinite ease-in-out;
+        }
+        #unicorn-horn {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 30px solid #ff69b4;
+            top: 0;
+            left: 30px;
+        }
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            50% { transform: rotate(20deg); }
+            100% { transform: rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="unicorn-container">
+        <div id="unicorn-head">
+            <div class="eye"></div>
+        </div>
+        <div id="unicorn-body"></div>
+        <div class="leg"></div>
+        <div class="leg"></div>
+        <div class="leg"></div>
+        <div class="leg"></div>
+        <div id="unicorn-mane"></div>
+        <div id="unicorn-tail"></div>
+        <div id="unicorn-horn"></div>
+    </div>
+</body>
+</html>

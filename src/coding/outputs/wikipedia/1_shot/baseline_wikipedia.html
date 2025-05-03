@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Article Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            text-align: right;
+            font-weight: bold;
+        }
+        #main-content {
+            display: flex;
+        }
+        #sidebar {
+            width: 200px;
+            background-color: #f1f1f1;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        #sidebar a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: #333;
+        }
+        #sidebar a:hover {
+            background-color: #ddd;
+        }
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        #toc {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        #toc h2 {
+            margin-top: 0;
+        }
+        #toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        #toc ul ul {
+            margin-left: 20px;
+        }
+        #toc a {
+            text-decoration: none;
+            color: #0056b3;
+        }
+        h1 {
+            font-size: 1.8em;
+        }
+        h2 {
+            font-size: 1.6em;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        p {
+            margin-top: 0;
+        }
+        .reference {
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+<header>Wikipedia</header>
+<div id="main-content">
+    <nav id="sidebar">
+        <a href="#main-content">Main Content</a>
+        <a href="#references">References</a>
+        <a href="#external-links">External Links</a>
+    </nav>
+    <div id="content">
+        <h1>Article Title</h1>
+        <div id="toc">
+            <h2>Contents</h2>
+            <ul>
+                <li><a href="#section1">1. Section 1</a>
+                    <ul>
+                        <li><a href="#subsection1-1">1.1 Subsection 1.1</a></li>
+                        <li><a href="#subsection1-2">1.2 Subsection 1.2</a></li>
+                    </ul>
+                </li>
+                <li><a href="#section2">2. Section 2</a></li>
+                <li><a href="#section3">3. Section 3</a></li>
+            </ul>
+        </div>
+        <h2 id="section1">Section 1</h2>
+        <p>This is the content of section 1.</p>
+        <h3 id="subsection1-1">Subsection 1.1</h3>
+        <p>This is the content of subsection 1.1.</p>
+        <h3 id="subsection1-2">Subsection 1.2</h3>
+        <p>This is the content of subsection 1.2.</p>
+        <h2 id="section2">Section 2</h2>
+        <p>This is the content of section 2. References are often included in this format<sup class="reference">[1]</sup>.</p>
+        <h2 id="section3">Section 3</h2>
+        <p>This is the content of section 3.</p>
+        <h2 id="references">References</h2>
+        <p class="reference">[1] Reference details go here.</p>
+        <h2 id="external-links">External Links</h2>
+        <p class="reference">External links and additional resources can be listed here.</p>
+    </div>
+</div>
+</body>
+</html>

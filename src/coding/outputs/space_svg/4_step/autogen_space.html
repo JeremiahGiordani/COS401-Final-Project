@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Scene</title>
+</head>
+<body>
+<svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Background Gradient -->
+    <defs>
+        <radialGradient id="skyGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" style="stop-color: #0c1445; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #000000; stop-opacity: 1" />
+        </radialGradient>
+        <linearGradient id="planetGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color: #ff99cc; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #990099; stop-opacity: 1" />
+        </linearGradient>
+        <linearGradient id="planetGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color: #66ffcc; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #003333; stop-opacity: 1" />
+        </linearGradient>
+        <radialGradient id="starGradient">
+            <stop offset="0%" style="stop-color: #ffffff; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #ffffff; stop-opacity: 0" />
+        </radialGradient>
+        <linearGradient id="tailGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color: #ffffff; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #ffffff; stop-opacity: 0" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background -->
+    <rect width="100%" height="100%" fill="url(#skyGradient)" />
+
+    <!-- Stars -->
+    <circle cx="100" cy="150" r="2" fill="#ffffcc">
+        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="700" cy="100" r="1.5" fill="#ffffff">
+        <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="600" cy="400" r="1.8" fill="#ff9966">
+        <animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="150" cy="450" r="1.2" fill="#ffffff">
+        <animate attributeName="opacity" values="0;1;0" dur="5s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="500" cy="200" r="1.5" fill="#ffff66">
+        <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="300" cy="50" r="1.0" fill="#ffffff">
+        <animate attributeName="opacity" values="0;1;0" dur="3.5s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Star Cluster -->
+    <circle cx="250" cy="50" r="1.2" fill="#ffffff" />
+    <circle cx="252" cy="45" r="0.8" fill="#ffffff" />
+    <circle cx="255" cy="48" r="1.5" fill="#ffff99" />
+    <circle cx="249" cy="48" r="1" fill="#ffffff" />
+    <circle cx="253" cy="53" r="0.9" fill="#ffffcc" />
+
+    <!-- Planets -->
+    <circle cx="200" cy="400" r="60" fill="url(#planetGradient1)">
+        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 200 400" to="360 200 400" dur="30s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="600" cy="300" r="50" fill="url(#planetGradient2)">
+        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 600 300" to="360 600 300" dur="40s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Asteroids -->
+    <polygon points="450,100 455,105 460,105 455,110" fill="#996633" />
+    <polygon points="420,210 425,215 427,213 423,218" fill="#663300" />
+    <polygon points="380,310 388,315 390,310 385,318" fill="#664422" />
+    <polygon points="480,250 488,255 490,252 485,258" fill="#996644" />
+
+    <!-- Comet -->
+    <circle cx="720" cy="350" r="5" fill="#ffffff" />
+    <path d="M 715 351 Q 700 355 680 360" fill="none" stroke="url(#tailGradient)" stroke-width="3" />
+
+    <!-- Nebula -->
+    <circle cx="350" cy="200" r="50" fill="url(#starGradient)" opacity="0.4"/>
+    <circle cx="365" cy="215" r="70" fill="url(#starGradient)" opacity="0.2"/>
+    <circle cx="340" cy="220" r="80" fill="url(#starGradient)" opacity="0.6"/>
+
+    <!-- Spacecraft -->
+    <polygon points="100,450 120,500 80,500" fill="#cccccc">
+        <animateTransform attributeName="transform" attributeType="XML" type="translate" from="-50 0" to="100 0" dur="10s" repeatCount="indefinite" />
+    </polygon>
+    <rect x="97" y="500" width="6" height="15" fill="#cccccc">
+        <animateTransform attributeName="transform" attributeType="XML" type="translate" from="-50 0" to="100 0" dur="10s" repeatCount="indefinite" />
+    </rect>
+
+</svg>
+</body>
+</html>

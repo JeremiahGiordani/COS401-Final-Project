@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Scene</title>
+</head>
+<body>
+    <svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background -->
+        <rect width="100%" height="100%" fill="black" />
+
+        <!-- Definitions for gradients -->
+        <defs>
+            <radialGradient id="starGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="white" stop-opacity="1" />
+                <stop offset="100%" stop-color="white" stop-opacity="0" />
+            </radialGradient>
+            <radialGradient id="planetGradient1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="blue" />
+                <stop offset="100%" stop-color="darkblue" />
+            </radialGradient>
+            <radialGradient id="planetGradient2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="red" />
+                <stop offset="100%" stop-color="darkred" />
+            </radialGradient>
+            <linearGradient id="cometGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="white" stop-opacity="1" />
+                <stop offset="100%" stop-color="white" stop-opacity="0" />
+            </linearGradient>
+            <radialGradient id="nebulaGradient" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="purple" stop-opacity="0.8" />
+                <stop offset="50%" stop-color="blue" stop-opacity="0.6" />
+                <stop offset="100%" stop-color="pink" stop-opacity="0.4" />
+            </radialGradient>
+        </defs>
+
+        <!-- Stars -->
+        <circle cx="100" cy="100" r="2" fill="white">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="200" cy="150" r="2" fill="url(#starGradient)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="300" cy="50" r="2" fill="white">
+            <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="400" cy="200" r="2" fill="url(#starGradient)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="500" cy="100" r="2" fill="white">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="600" cy="50" r="2" fill="url(#starGradient)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="700" cy="150" r="2" fill="white">
+            <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="750" cy="250" r="2" fill="url(#starGradient)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="650" cy="300" r="2" fill="white">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="550" cy="350" r="2" fill="url(#starGradient)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="450" cy="400" r="2" fill="white">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="350" cy="450" r="2" fill="url(#starGradient)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="3s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="250" cy="500" r="2" fill="white">
+            <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="150" cy="550" r="2" fill="url(#starGradient)">
+            <animate attributeName="opacity" values="1;0.5;1" dur="2.5s" repeatCount="indefinite" />
+        </circle>
+
+        <!-- Planets -->
+        <circle cx="600" cy="400" r="30" fill="url(#planetGradient1)">
+            <animateTransform attributeName="transform" type="rotate" from="0 600 400" to="360 600 400" dur="60s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="200" cy="450" r="20" fill="url(#planetGradient2)">
+            <animateTransform attributeName="transform" type="rotate" from="0 200 450" to="360 200 450" dur="80s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="400" cy="300" r="25" fill="url(#planetGradient1)">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="70s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="700" cy="500" r="15" fill="url(#planetGradient2)">
+            <animateTransform attributeName="transform" type="rotate" from="0 700 500" to="360 700 500" dur="90s" repeatCount="indefinite" />
+        </circle>
+
+        <!-- Comet -->
+        <circle cx="50" cy="50" r="5" fill="white">
+            <animate attributeName="cx" from="50" to="750" dur="10s" repeatCount="indefinite" />
+            <animate attributeName="cy" from="50" to="550" dur="10s" repeatCount="indefinite" />
+        </circle>
+        <path d="M50,50 Q100,100 150,150" stroke="url(#cometGradient)" stroke-width="2">
+            <animate attributeName="d" values="M50,50 Q100,100 150,150; M750,550 Q800,600 850,650" dur="10s" repeatCount="indefinite" />
+        </path>
+
+        <!-- Nebula -->
+        <path d="M100,300 Q200,200 300,300 T500,300 Q600,400 700,300" fill="url(#nebulaGradient)">
+            <animate attributeName="opacity" values="0.6;0.8;0.6" dur="10s" repeatCount="indefinite" />
+        </path>
+        <path d="M150,350 Q250,250 350,350 T550,350 Q650,450 750,350" fill="url(#nebulaGradient)" opacity="0.5">
+            <animate attributeName="opacity" values="0.4;0.6;0.4" dur="12s" repeatCount="indefinite" />
+        </path>
+        <path d="M200,400 Q300,300 400,400 T600,400 Q700,500 800,400" fill="url(#nebulaGradient)" opacity="0.4">
+            <animate attributeName="opacity" values="0.3;0.5;0.3" dur="14s" repeatCount="indefinite" />
+        </path>
+    </svg>
+</body>
+</html>

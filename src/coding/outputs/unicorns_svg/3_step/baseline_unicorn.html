@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Unicorn</title>
+</head>
+<body>
+<svg width="100%" height="100%" viewBox="0 0 800 600">
+    <!-- Background -->
+    <defs>
+        <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="lightblue"/>
+            <stop offset="100%" stop-color="lightpink"/>
+        </linearGradient>
+        <linearGradient id="bodyGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="white"/>
+            <stop offset="100%" stop-color="lightpink"/>
+        </linearGradient>
+        <linearGradient id="maneGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="lavender"/>
+            <stop offset="100%" stop-color="lightblue"/>
+        </linearGradient>
+        <linearGradient id="hornGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="gold"/>
+            <stop offset="100%" stop-color="yellow"/>
+        </linearGradient>
+        <style>
+            @keyframes sparkle {
+                0%, 100% { opacity: 0; }
+                50% { opacity: 1; }
+            }
+            @keyframes tailWave {
+                0%, 100% { transform: rotate(0deg); }
+                50% { transform: rotate(3deg); }
+            }
+            @keyframes blink {
+                0%, 98%, 100% { height: 15px; }
+                99% { height: 0px; }
+            }
+        </style>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#skyGradient)"/>
+    <!-- Unicorn's body -->
+    <ellipse cx="400" cy="300" rx="120" ry="70" fill="url(#bodyGradient)" />
+    <!-- Unicorn's legs -->
+    <path d="M 320 360 L 330 360 L 330 460 Q 325 475, 320 470 Z" fill="lightpink" />
+    <path d="M 360 360 L 370 360 L 370 460 Q 365 475, 360 470 Z" fill="lightpink" />
+    <path d="M 430 360 L 440 360 L 440 460 Q 435 475, 430 470 Z" fill="lightpink" />
+    <path d="M 470 360 L 480 360 L 480 460 Q 475 475, 470 470 Z" fill="lightpink" />
+    <!-- Unicorn's head -->
+    <ellipse cx="500" cy="250" rx="50" ry="60" fill="url(#bodyGradient)" />
+    <!-- Unicorn's mane -->
+    <path d="M 460 180 C 420 160, 420 200, 460 220 Z" fill="url(#maneGradient)" />
+    <path d="M 480 150 C 440 130, 440 170, 480 190 Z" fill="url(#maneGradient)" />
+    <!-- Unicorn's tail -->
+    <polygon points="275,280 320,370 250,450" fill="url(#maneGradient)" style="animation: tailWave 3s infinite alternate;" transform-origin="275px 280px" />
+    <!-- Unicorn's horn -->
+    <polygon points="530,180 510,70 490,180" fill="url(#hornGradient)" />
+    <!-- Unicorn's ears -->
+    <polygon points="475,180 465,140 455,180" fill="lightpink" />
+    <polygon points="525,180 535,140 545,180" fill="lightpink" />
+    <!-- Unicorn's eyes -->
+    <ellipse cx="480" cy="240" rx="10" ry="15" fill="white" />
+    <circle cx="480" cy="243" r="6" fill="black" />
+    <ellipse cx="480" cy="240" rx="10" ry="15" fill="black" style="animation: blink 5s infinite;" />
+    <!-- Sparkles -->
+    <circle cx="510" cy="90" r="5" fill="white" style="animation: sparkle 1s infinite;"/>
+    <circle cx="490" cy="90" r="5" fill="white" style="animation: sparkle 1s infinite 0.5s;"/>
+    <circle cx="500" cy="75" r="5" fill="white" style="animation: sparkle 1s infinite 0.2s;"/>
+</svg>
+</body>
+</html>

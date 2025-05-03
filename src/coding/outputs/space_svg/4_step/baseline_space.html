@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improved Space Scene</title>
+    <style>
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        @keyframes moveComet {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(400px, 300px); }
+        }
+        @keyframes rotatePlanet {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes pulseNebula {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+<svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient id="bgGradient" cx="50%" cy="50%" r="85%">
+            <stop offset="30%" stop-color="#001d3d" />
+            <stop offset="100%" stop-color="#000" />
+        </radialGradient>
+        <radialGradient id="starGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff" />
+            <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="planetGradientBlue" cx="50%" cy="50%" r="50%">
+            <stop offset="10%" stop-color="#4a90e2" />
+            <stop offset="100%" stop-color="#27496d" />
+        </radialGradient>
+        <radialGradient id="planetGradientRed" cx="50%" cy="50%" r="50%">
+            <stop offset="10%" stop-color="#e24a4a" />
+            <stop offset="100%" stop-color="#9d2727" />
+        </radialGradient>
+        <linearGradient id="cometGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#fff" />
+            <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+        </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#bgGradient)" />
+
+    <!-- Stars -->
+    <g>
+        <circle cx="50" cy="50" r="1" fill="white" style="animation: twinkle 1.5s infinite;" />
+        <circle cx="150" cy="30" r="1.5" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="250" cy="80" r="1" fill="white" style="animation: twinkle 2.5s infinite;" />
+        <circle cx="350" cy="100" r="1.2" fill="white" style="animation: twinkle 1.2s infinite;" />
+        <circle cx="450" cy="150" r="1" fill="white" style="animation: twinkle 1.8s infinite;" />
+        <circle cx="550" cy="50" r="1" fill="white" style="animation: twinkle 1.4s infinite;" />
+        <circle cx="650" cy="130" r="1.5" fill="white" style="animation: twinkle 2.3s infinite;" />
+        <circle cx="750" cy="70" r="1" fill="white" style="animation: twinkle 1.1s infinite;" />
+        <circle cx="170" cy="210" r="1.3" fill="white" style="animation: twinkle 2.2s infinite;" />
+        <circle cx="270" cy="180" r="1.1" fill="white" style="animation: twinkle 2s infinite;" />
+        <circle cx="370" cy="250" r="1" fill="white" style="animation: twinkle 1.6s infinite;" />
+        <circle cx="670" cy="220" r="1.4" fill="white" style="animation: twinkle 1.9s infinite;" />
+    </g>
+
+    <!-- Nebula -->
+    <g style="animation: pulseNebula 15s infinite;">
+        <path d="M400,300 q-50,-100 50,-200 q100,100 150,50 q-50,150 50,200 q-100,-100 -150,-50 q-100,50 -100,0 z" fill="rgba(128,0,128,0.3)" />
+        <path d="M450,350 q-20,-40 20,-60 q40,40 60,20 q-20,60 20,60 q-40,-40 -60,-20 q-40,20 -40,0 z" fill="rgba(255,0,255,0.3)" />
+        <filter id="blurEffect">
+            <feGaussianBlur stdDeviation="10" />
+        </filter>
+        <path d="M400,300 q-50,-100 50,-200 q100,100 150,50 q-50,150 50,200 q-100,-100 -150,-50 q-100,50 -100,0 z" fill="rgba(128,0,128,0.6)" filter="url(#blurEffect)" />
+        <path d="M450,350 q-20,-40 20,-60 q40,40 60,20 q-20,60 20,60 q-40,-40 -60,-20 q-40,20 -40,0 z" fill="rgba(255,0,255,0.6)" filter="url(#blurEffect)" />
+    </g>
+
+    <!-- Planets -->
+    <g style="transform-origin: 200px 200px; animation: rotatePlanet 80s infinite linear;">
+        <ellipse cx="200" cy="200" rx="50" ry="50" fill="url(#planetGradientBlue)" />
+    </g>
+    <g style="transform-origin: 600px 400px; animation: rotatePlanet 120s infinite linear reverse;">
+        <ellipse cx="600" cy="400" rx="40" ry="40" fill="url(#planetGradientRed)" />
+        <ellipse cx="600" cy="400" rx="60" ry="20" fill="none" stroke="#9d2727" stroke-width="2" stroke-opacity="0.5" />
+    </g>
+
+    <!-- Comet -->
+    <path d="M100,500 q50,-20 100,-50 q50,50 100,0 q-50,20 -100,50 q-50,-50 -100,0 z" fill="url(#cometGradient)" style="animation: moveComet 15s infinite linear;" />
+</svg>
+</body>
+</html>
