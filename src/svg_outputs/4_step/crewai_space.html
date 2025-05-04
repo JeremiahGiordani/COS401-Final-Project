@@ -1,92 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Scene</title>
 </head>
+
 <body>
-    <svg width="100%" height="100%" viewBox="0 0 800 600">
-
+    <svg width="100vw" height="100vh">
         <!-- Background -->
-        <defs>
-            <radialGradient id="spaceGradient" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" style="stop-color:darkblue; stop-opacity:1" />
-                <stop offset="100%" style="stop-color:black; stop-opacity:1" />
-            </radialGradient>
-
-            <!-- Gradients for planets -->
-            <linearGradient id="earthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:blue; stop-opacity:1" />
-                <stop offset="100%" style="stop-color:green; stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="marsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:red; stop-opacity:1" />
-                <stop offset="100%" style="stop-color:orange; stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="icePlanetGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:lightblue; stop-opacity:1" />
-                <stop offset="100%" style="stop-color:white; stop-opacity:1" />
-            </linearGradient>
-
-            <!-- Gradient for nebula -->
-            <linearGradient id="nebulaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:purple; stop-opacity:0.8" />
-                <stop offset="100%" style="stop-color:pink; stop-opacity:0.8" />
-            </linearGradient>
-        </defs>
-        <rect width="800" height="600" fill="url(#spaceGradient)" />
+        <rect width="100%" height="100%" fill="darkblue"></rect>
 
         <!-- Stars -->
-        <circle cx="60" cy="80" r="2" fill="white">
-            <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite" />
+        <circle cx="50" cy="50" r="2" fill="white" opacity="0.8">
+            <animate attributeType="XML" attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="120" cy="150" r="1.5" fill="palegoldenrod">
-            <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
+        <!-- Adding multiple stars with varying positions and sizes -->
+        <circle cx="200" cy="80" r="1.5" fill="lightyellow" opacity="0.9">
+            <animate attributeType="XML" attributeName="opacity" values="0.9;1;0.9" dur="1.5s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="300" cy="90" r="2.5" fill="white" />
-        <circle cx="470" cy="220" r="1" fill="palegoldenrod" />
-        <circle cx="540" cy="120" r="3" fill="white">
-            <animate attributeName="opacity" values="1;0.1;1" dur="3s" repeatCount="indefinite" />
+        <circle cx="300" cy="150" r="2.5" fill="white" opacity="0.7">
+            <animate attributeType="XML" attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="620" cy="360" r="2" fill="white" />
-        <circle cx="720" cy="200" r="1.5" fill="palegoldenrod" />
+        <circle cx="450" cy="200" r="2" fill="yellow" opacity="0.8">
+            <animate attributeType="XML" attributeName="opacity" values="0.8;1;0.8" dur="2.2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="600" cy="80" r="1.8" fill="white" opacity="0.9">
+            <animate attributeType="XML" attributeName="opacity" values="0.9;1;0.9" dur="1.7s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="700" cy="150" r="2.2" fill="lightblue" opacity="0.8">
+            <animate attributeType="XML" attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="800" cy="250" r="2" fill="white" opacity="0.9">
+            <animate attributeType="XML" attributeName="opacity" values="0.9;1;0.9" dur="1.2s" repeatCount="indefinite" />
+        </circle>
 
-        <!-- Planets -->
-        <circle cx="150" cy="450" r="40" fill="url(#earthGradient)" />
-        <circle cx="350" cy="400" r="30" fill="url(#marsGradient)" />
-        <circle cx="600" cy="500" r="50" fill="url(#icePlanetGradient)" />
-
-        <!-- Asteroids -->
-        <polygon points="45,300 50,295 55,298 49,305" fill="gray" />
-        <polygon points="75,320 80,315 85,318 79,325" fill="darkgray" />
-        <polygon points="105,310 110,305 115,308 109,315" fill="gray" />
-        <path d="M240,200 L250,210 L245,215 L235,205 Z" fill="saddlebrown" />
-        <path d="M270,220 L280,230 L275,235 L265,225 Z" fill="darkgray" />
-
-        <!-- Comet -->
-        <circle cx="720" cy="80" r="5" fill="white" />
-        <path d="M720,80 C710,100 690,130 670,120" fill="none" stroke="white" stroke-width="2">
-            <animateMotion path="M 0 0 Q -50 50 -100 50" dur="5s" repeatCount="indefinite" />
+        <!-- Galaxy -->
+        <radialGradient id="galaxyGradient">
+            <stop offset="0%" stop-color="purple" />
+            <stop offset="100%" stop-color="pink" />
+        </radialGradient>
+        <path d="M 500,500 Q 450,450 400,500 T 300,500" fill="url(#galaxyGradient)" opacity="0.5">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 400 500" to="360 400 500" dur="20s" repeatCount="indefinite" />
         </path>
+        <path d="M 500,500 Q 450,450 350,450 T 300,300" fill="url(#galaxyGradient)" opacity="0.3">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 400 500" to="360 400 500" dur="25s" repeatCount="indefinite" />
+        </path>
+        <path d="M 500,500 Q 450,450 300,500 T 150,500" fill="url(#galaxyGradient)" opacity="0.4">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 400 500" to="360 400 500" dur="22s" repeatCount="indefinite" />
+        </path>
+
+        <!-- Planet -->
+        <radialGradient id="planetGradient">
+            <stop offset="0%" stop-color="skyblue" />
+            <stop offset="100%" stop-color="darkblue" />
+        </radialGradient>
+        <circle cx="600" cy="400" r="60" fill="url(#planetGradient)" />
+
+        <!-- Planet Rings -->
+        <ellipse cx="600" cy="400" rx="80" ry="25" fill="none" stroke="lightgray" stroke-width="2" opacity="0.7">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 600 400" to="360 600 400" dur="10s" repeatCount="indefinite" />
+        </ellipse>
+        <ellipse cx="600" cy="400" rx="100" ry="30" fill="none" stroke="white" stroke-width="1" opacity="0.5">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 600 400" to="360 600 400" dur="15s" repeatCount="indefinite" />
+        </ellipse>
+        <ellipse cx="600" cy="400" rx="120" ry="35" fill="none" stroke="lightblue" stroke-width="1.5" opacity="0.6">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 600 400" to="360 600 400" dur="12s" repeatCount="indefinite" />
+        </ellipse>
+
+        <!-- Satellites/Space Debris -->
+        <rect x="580" y="300" width="10" height="10" fill="gray" opacity="0.9">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 600 400" to="360 600 400" dur="5s" repeatCount="indefinite" />
+        </rect>
+        <polygon points="630,370 640,380 630,390" fill="silver" opacity="0.8">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 600 400" to="360 600 400" dur="8s" repeatCount="indefinite" />
+        </polygon>
+        <rect x="650" y="450" width="15" height="5" fill="lightgray" opacity="0.8">
+            <animateTransform attributeType="XML" attributeName="transform" type="rotate" from="0 600 400" to="360 600 400" dur="6s" repeatCount="indefinite" />
+        </rect>
 
         <!-- Spaceship -->
-        <rect x="350" y="50" width="20" height="50" fill="silver" />
-        <rect x="345" y="100" width="30" height="10" fill="silver" />
-        <path d="M364,60 L374,90 L354,90 Z" fill="lightgray" />
-        <path d="M356,140 C356,130 364,130 364,140 Z" fill="lightblue">
-            <animate attributeName="fill-opacity" values="1;0;1" dur="1.5s" repeatCount="indefinite" />
-        </path>
-
-        <!-- Nebula -->
-        <path d="M200,100 Q250,85 300,100 Q350,115 400,100 Q450,85 500,100" fill="url(#nebulaGradient)" opacity="0.6">
-            <animate attributeName="opacity" values="0.6;0.4;0.6" dur="4s" repeatCount="indefinite" />
-            <animate attributeName="d" values="M200,100 Q250,85 300,100 Q350,115 400,100 Q450,85 500,100;
-                                                 M210,120 Q260,90 310,110 Q360,130 410,110 Q460,90 510,110;
-                                                 M200,100 Q250,85 300,100 Q350,115 400,100 Q450,85 500,100" 
-                     dur="8s" repeatCount="indefinite" />
-        </path>
-        
+        <polygon points="700,600 720,580 740,600 720,620" fill="red">
+            <animateTransform attributeType="XML" attributeName="transform" type="translate" from="50 50" to="600 -200" dur="10s" repeatCount="indefinite" />
+        </polygon>
+        <polygon points="720,580 730,560 740,580" fill="darkred">
+            <animateTransform attributeType="XML" attributeName="transform" type="translate" from="50 50" to="600 -200" dur="10s" repeatCount="indefinite" />
+        </polygon>
+        <polygon points="710,600 720,570 730,600 720,630" fill="orange">
+            <animateTransform attributeType="XML" attributeName="transform" type="translate" from="50 50" to="600 -200" dur="10s" repeatCount="indefinite" />
+        </polygon>
     </svg>
 </body>
+
 </html>
