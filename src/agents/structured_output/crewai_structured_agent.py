@@ -1,10 +1,12 @@
 from crewai import Agent, Task, Crew, LLM
 from pydantic import BaseModel, Field
 
+from agents.structured_output.agent import Agent
+
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
 
-
+# CrewAI uses env vars for the token and endpoint
 class CrewAIAgent:
     def __init__(self, model: str = "gpt-4o"):
 

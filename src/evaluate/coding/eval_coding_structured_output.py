@@ -11,11 +11,13 @@ import sys
 import io
 import contextlib
 
-from agents.reasoning.pydantic_agent import PydanticAgent
-from agents.reasoning.langchain_agent import LangchainAgent
-from agents.reasoning.crewai_agent import CrewAIAgent
-from agents.reasoning.autogen_agent import AutoGenAgent
-from agents.reasoning.direct_call import BaselineLLMAgent
+from agents.structured_output.agent import Agent
+
+from agents.structured_output.pydantic_structured_agent import PydanticAgent
+from agents.structured_output.langchain_structured_agent import LangchainAgent
+from agents.structured_output.crewai_structured_agent import CrewAIAgent
+from agents.structured_output.autogen_structured_agent import AutoGenAgent
+from agents.structured_output.direct_structured_call import BaselineLLMAgent
 
 def extract_python_code(raw_response: str) -> str:
     match = re.search(r"```python\s*(.*?)```", raw_response, re.DOTALL | re.IGNORECASE)
@@ -32,7 +34,7 @@ def load_test_function(test_code: str) -> Callable:
     spec.loader.exec_module(test_module)
     return test_module.check
 
-def evaluate_code(n: int, agent) -> float:
+def evaluate_code(n: int, agent: Agent) -> float:
     instruction_dataset = load_dataset("codeparrot/instructhumaneval", split=f"test[:{n}]")
     test_dataset = load_dataset("evalplus/humanevalplus", split=f"test[:{n}]")
     total_correct = 0

@@ -1,6 +1,9 @@
 from crewai import Agent, Task, Crew, LLM
 
-class CrewAIAgent:
+from agents.reasoning.agent import Agent
+
+# CrewAI uses env vars for the token and endpoint
+class CrewAIAgent(Agent):
     def __init__(self, model: str = "gpt-4o",):
         self.llm = LLM(
             model=f"azure/{model}"

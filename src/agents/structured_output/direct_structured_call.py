@@ -3,6 +3,7 @@ from openai import AzureOpenAI
 import env
 import json
 
+from agents.structured_output.agent import Agent
 
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")

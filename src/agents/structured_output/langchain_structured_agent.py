@@ -6,6 +6,8 @@ from langchain_core.output_parsers import PydanticOutputParser
 import env
 import json
 
+from agents.structured_output.agent import Agent
+
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
 

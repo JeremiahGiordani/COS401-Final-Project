@@ -4,14 +4,16 @@ import json
 import argparse
 from tqdm import tqdm
 
-from agents.pydantic_base_agent import PydanticAgent
-from agents.langchain_base_agent import LangchainAgent
-from agents.crewai_base_agent import CrewAIAgent
-from agents.autogen_base_agent import AutoGenAgent
-from agents.direct_call import BaselineLLMAgent
+from agents.structured_output.agent import Agent
+
+from agents.structured_output.pydantic_structured_agent import PydanticAgent
+from agents.structured_output.langchain_structured_agent import LangchainAgent
+from agents.structured_output.crewai_structured_agent import CrewAIAgent
+from agents.structured_output.autogen_structured_agent import AutoGenAgent
+from agents.structured_output.direct_structured_call import BaselineLLMAgent
 
 
-def evaluate_agent(agent, dataset, n_problems=10) -> List[Dict]:
+def evaluate_agent(agent: Agent, dataset, n_problems=10) -> List[Dict]:
     results = []
     for i, item in enumerate(tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)):
         if i >= n_problems:

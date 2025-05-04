@@ -6,7 +6,9 @@ from langchain_core.output_parsers import PydanticOutputParser
 import env
 import json
 
-class LangchainAgent:
+from agents.reasoning.agent import Agent
+
+class LangchainAgent(Agent):
     def __init__(self, model_name: str = "gpt-4o"):
         self.llm = AzureChatOpenAI(
             model=model_name,
