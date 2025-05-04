@@ -72,7 +72,6 @@ def evaluate_agent(agent: Agent, dataset, n_problems=10, reasoning_steps: int=1)
 
     return results
 
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--n", type=int, default=30, help="Number of problems to evaluate")

@@ -11,7 +11,6 @@ from agents.reasoning.direct_call import BaselineLLMAgent
 
 system_prompt = "You are a helpful web developer."
 
-
 reasoning_prompt = (
     "You are participating in a space-scene-rendering competition where the goal is to create a scene of outer space using only inline SVG graphics. "
     "Before you begin coding, describe your design plan in detail. "
@@ -20,7 +19,6 @@ reasoning_prompt = (
     "You may use SVG transforms, gradients, and stroke/fill styles. "
     "Do not write any code yet — just explain your design step by step."
 )
-
 
 code_prompt = (
     "Now, based on your plan, write a complete HTML file that renders your space scene using SVG. "
