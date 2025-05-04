@@ -4,9 +4,7 @@ from autogen_core.models import SystemMessage, UserMessage, AssistantMessage
 import env
 import asyncio
 
-from agents.reasoning.agent import Agent
-
-class AutoGenAgent(Agent):
+class AutoGenAgent:
     def __init__(self, model: str = "gpt-4o"):
         self.agent = AzureOpenAIChatCompletionClient(
             model=model,

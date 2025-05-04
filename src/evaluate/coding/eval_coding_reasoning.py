@@ -11,11 +11,29 @@ import sys
 import io
 import contextlib
 
+from agents.reasoning.agent import Agent
+
 from agents.reasoning.pydantic_agent import PydanticAgent
 from agents.reasoning.langchain_agent import LangchainAgent
 from agents.reasoning.crewai_agent import CrewAIAgent
 from agents.reasoning.autogen_agent import AutoGenAgent
 from agents.reasoning.direct_call import BaselineLLMAgent
+
+
+ONE_SHOT_PROMPT = "Given the following coding problem, please implement the solution step by step"
+
+PLANNING_PROMPT = (
+    "Given the following coding prompt, please formulate an approach "
+    "to the problem. Do NOT write code yet, "
+    "just come up with a plan"
+)
+REFLECT_PROMPT = (
+    "Great, now that you've written up a plan, I want you to "
+    "carefully reflect on it. It's VERY important that you get "
+    "it right. Please reconsider all of your steps and aim to correct "
+    "any mistakes."
+)
+EXECUTE_PROMPT = "Great, now given you plan, please implement the code."
 
 def extract_python_code(raw_response: str) -> str:
     match = re.search(r"```python\s*(.*?)```", raw_response, re.DOTALL | re.IGNORECASE)
@@ -32,15 +50,26 @@ def load_test_function(test_code: str) -> Callable:
     spec.loader.exec_module(test_module)
     return test_module.check
 
-def evaluate_code(n: int, agent) -> float:
+def evaluate_code(n: int, agent: Agent, reasoning_steps: int=1) -> float:
     instruction_dataset = load_dataset("codeparrot/instructhumaneval", split=f"test[:{n}]")
     test_dataset = load_dataset("evalplus/humanevalplus", split=f"test[:{n}]")
     total_correct = 0
 
     for instruction, test in zip(instruction_dataset, test_dataset):
-        prompt = instruction["context"] + "\n" + instruction["instruction"]
+        coding_prompt = instruction["context"] + "\n" + instruction["instruction"]
         system_prompt = "You are an expert coding agent"
-        response = agent.solve(system_prompt, [prompt])
+
+        if reasoning_steps == 1:
+            one_shot_prompt = ONE_SHOT_PROMPT + f"Coding problem: {coding_prompt}"
+            prompt = [one_shot_prompt]
+        elif reasoning_steps == 2:
+            planning_prompt = PLANNING_PROMPT + f"Coding problem: {coding_prompt}"
+            prompt = [planning_prompt, EXECUTE_PROMPT]
+        elif reasoning_steps == 3:
+            planning_prompt = PLANNING_PROMPT + f"Coding problem: {coding_prompt}"
+            prompt = [planning_prompt, REFLECT_PROMPT, EXECUTE_PROMPT]
+
+        response = agent.solve(system_prompt, prompt)
         code = extract_python_code(response)
 
         try:
@@ -63,7 +92,8 @@ def evaluate_code(n: int, agent) -> float:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--n", type=int, default=30, help="Number of problems to evaluate")
+    parser.add_argument("--n", type=int, default=30, help="Number of coding problems to solve")
+    parser.add_argument("--reasoning", type=int, default=1, help="Number of reasoning steps")
     args = parser.parse_args()
 
     agents = {
@@ -76,7 +106,7 @@ def main():
 
     for name, agent in agents.items():
         print(f"\n--- Evaluating {name} ---")
-        accuracy = evaluate_code(args.n, agent)
+        accuracy = evaluate_code(args.n, agent, reasoning_steps=args.reasoning)
         print(f"Accuracy for {name}: {accuracy:.2%}")
 
 if __name__ == "__main__":

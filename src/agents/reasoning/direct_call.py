@@ -2,9 +2,7 @@ from pydantic import BaseModel, Field
 from openai import AzureOpenAI
 import env
 
-from agents.reasoning.agent import Agent
-
-class BaselineLLMAgent(Agent):
+class BaselineLLMAgent:
     def __init__(self, model: str = "gpt-4o"):
         self.client = AzureOpenAI(
             api_key=env.API_KEY,

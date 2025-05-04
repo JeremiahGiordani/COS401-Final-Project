@@ -5,9 +5,7 @@ from pydantic_ai.providers.openai import OpenAIProvider
 import env
 from openai import AsyncAzureOpenAI
 
-from agents.reasoning.agent import Agent
-
-class PydanticAgent(Agent):
+class PydanticAgent:
     def __init__(self, model: str = "gpt-4o"):
         client = AsyncAzureOpenAI(
             azure_endpoint=env.BASE_URL,

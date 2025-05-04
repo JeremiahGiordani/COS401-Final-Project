@@ -41,8 +41,7 @@ def evaluate_code(n: int, agent: Agent) -> float:
 
     for instruction, test in zip(instruction_dataset, test_dataset):
         prompt = instruction["context"] + "\n" + instruction["instruction"]
-        system_prompt = "You are an expert coding agent"
-        response = agent.solve(system_prompt, [prompt])
+        response = agent.solve(prompt, coding=True)
         code = extract_python_code(response)
 
         try:
@@ -65,7 +64,7 @@ def evaluate_code(n: int, agent: Agent) -> float:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--n", type=int, default=30, help="Number of problems to evaluate")
+    parser.add_argument("--n", type=int, default=30, help="Number of coding problems to solve")
     args = parser.parse_args()
 
     agents = {

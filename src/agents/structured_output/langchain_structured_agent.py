@@ -6,14 +6,16 @@ from langchain_core.output_parsers import PydanticOutputParser
 import env
 import json
 
-from agents.structured_output.agent import Agent
 
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
 
+class Code(BaseModel):
+    answer: str = Field(description="The complete code implementation.")
+
 class LangchainAgent:
     def __init__(self, model_name: str = "gpt-4o"):
-        llm = AzureChatOpenAI(
+        self.llm = AzureChatOpenAI(
             model=model_name,
             temperature=0,
             azure_endpoint=env.BASE_URL,
@@ -21,19 +23,21 @@ class LangchainAgent:
             api_version=env.API_VERSION,
         )
 
-        tools = [Answer]
-
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", "You are solving math competition problems. Respond only with the final answer in JSON format."),
+            ("system", "You are solving a logical task. Respond only with the final answer (a number or code), no explanation."),
             ("human", "{problem}")
         ])
 
-        self.structured_llm = llm.bind_tools(tools, tool_choice=True)
 
+    def solve(self, problem: str, coding=False) -> int | str:
+        if coding:
+            tools = [Code]
+        else:
+            tools = [Answer]
 
-    def solve(self, problem: str) -> int:
         messages = self.prompt.invoke({"problem": problem})
-        result = self.structured_llm.invoke(messages)
+        structured_llm = self.llm.bind_tools(tools, tool_choice=True)
+        result = structured_llm.invoke(messages)
         result = result.tool_calls[0]["args"]
         return result["answer"]
 

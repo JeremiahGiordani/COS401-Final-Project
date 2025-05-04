@@ -5,10 +5,11 @@ import env
 import asyncio
 import inspect
 
-from agents.structured_output.agent import Agent
-
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
+
+class Code(BaseModel):
+    answer: str = Field(description="The complete code implementation.")
 
 class AutoGenAgent:
     def __init__(self, model: str = "gpt-4o"):
@@ -19,38 +20,49 @@ class AutoGenAgent:
             api_key=env.API_KEY,
         )
 
-    async def _solve_async(self, problem: str) -> int:
-        parameters = Answer.model_json_schema()
+    async def _solve_async(self, problem: str, coding=False) -> int | str:
+        if coding:
+            parameters = Answer.model_json_schema()
+            tool = {
+                "name": "Code",
+                "description": "Return the code implementation",
+                "parameters": parameters,
+                "strict": True
+            }
+        else:
+            parameters = Code.model_json_schema()
+            tool = {
+                "name": "Answer",
+                "description": "Return the answer to the math problem",
+                "parameters": parameters,
+                "strict": True
+            }
         parameters["additionalProperties"] = False
 
         response = await self.agent.create(
             messages=[
-                SystemMessage(content="You are solving math competition problems. Respond only with the final answer (an integer), no explanation in JSON format."),
+                SystemMessage(content="You are solving a logical task. Respond only with the final answer (a number or code), no explanation."),
                 UserMessage(content=problem, source="user")
             ],
-            tools=[
-                {
-                    "name": "Answer",
-                    "description": "Return the answer to the math problem",
-                    "parameters": parameters,
-                    "strict": True
-                }
-            ],
+            tools=[tool],
             extra_create_args={"tool_choice": "required"}
         )
         print(response)
 
         args_str = response.content[0].arguments
-        parsed = Answer.model_validate_json(args_str)
+        if coding:
+            parsed = Code.model_validate_json(args_str)
+        else:
+            parsed = Answer.model_validate_json(args_str)
         return parsed.answer
 
-    def solve(self, problem: str) -> int:
+    def solve(self, problem: str, coding=False) -> int | str:
         try:
             loop = asyncio.get_running_loop()
         except RuntimeError:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
-        return loop.run_until_complete(self._solve_async(problem))
+        return loop.run_until_complete(self._solve_async(problem, coding=coding))
 
 if __name__ == "__main__":
     agent = AutoGenAgent()

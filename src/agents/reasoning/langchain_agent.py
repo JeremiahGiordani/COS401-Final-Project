@@ -6,9 +6,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 import env
 import json
 
-from agents.reasoning.agent import Agent
-
-class LangchainAgent(Agent):
+class LangchainAgent:
     def __init__(self, model_name: str = "gpt-4o"):
         self.llm = AzureChatOpenAI(
             model=model_name,
@@ -18,7 +16,6 @@ class LangchainAgent(Agent):
             api_version=env.API_VERSION,
         )
 
-        # From prior implementation
         self.prompt = ChatPromptTemplate.from_messages([
             ("system", "{system_prompt}"),
             ("human", "{user_prompt}")

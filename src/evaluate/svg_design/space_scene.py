@@ -1,5 +1,6 @@
 import os
 import re
+import argparse
 
 from agents.reasoning.pydantic_agent import PydanticAgent
 from agents.reasoning.langchain_agent import LangchainAgent
@@ -52,14 +53,26 @@ ONE_STEP_PROMPT = [svg_space_oneshot_prompt]
 TWO_STEP_PROMPTS = [reasoning_prompt, code_prompt]
 THREE_STEP_PROMPTS = [reasoning_prompt, reflect_prompt, code_prompt]
 
-OUTPUT_DIR = "../outputs/svg_outputs/3_step"
+
+OUTPUT_DIR = "../outputs/svg_outputs/"
 
 def extract_html_only(raw_response: str) -> str:
     match = re.search(r"```html\s*(.*?)```", raw_response, re.DOTALL | re.IGNORECASE)
     return match.group(1).strip() if match else raw_response.strip()
 
 def main():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--reasoning", type=int, default=1, help="Number of reasoning steps")
+    args = parser.parse_args()
+
+    if args.reasoning == 1:
+        out_dir = OUTPUT_DIR + "1_step"
+    elif args.reasoning == 2:
+        out_dir = OUTPUT_DIR + "2_step"
+    else:
+        out_dir = OUTPUT_DIR + "3_step"
+
+    os.makedirs(out_dir, exist_ok=True)
 
     agents = {
         "baseline": BaselineLLMAgent(),
@@ -73,14 +86,20 @@ def main():
         print(f"Generating Space scene with: {name}...")
 
         try:
-            html = agent.solve(system_prompt=system_prompt, prompts=THREE_STEP_PROMPTS)
+            if args.reasoning == 1:
+                prompts=ONE_STEP_PROMPT
+            elif args.reasoning == 2:
+                prompts=TWO_STEP_PROMPTS
+            else:
+                prompts=THREE_STEP_PROMPTS
+
+            html = agent.solve(system_prompt=system_prompt, prompts=prompts)
             html = extract_html_only(html)
 
             if "<!doctype html" not in html.lower():
-                print(html)
                 raise ValueError("Agent did not return valid HTML.")
 
-            output_path = os.path.join(OUTPUT_DIR, f"{name}_space.html")
+            output_path = os.path.join(out_dir, f"{name}_space.html")
             with open(output_path, "w") as f:
                 f.write(html)
 

@@ -3,10 +3,11 @@ from openai import AzureOpenAI
 import env
 import json
 
-from agents.structured_output.agent import Agent
-
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
+
+class Code(BaseModel):
+    answer: str = Field(description="The complete code implementation.")
 
 
 class BaselineLLMAgent:
@@ -18,45 +19,65 @@ class BaselineLLMAgent:
         )
         self.model = model
 
-        # Prepare the tool/function spec
-        self.tool = {
+    def solve(self, problem: str, coding=False) -> int | str:
+
+        if coding:
+            parameters = {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "The complete code implementation."
+                    }
+                },
+                "required": ["code"],
+                "additionalProperties": False
+            }
+            tool_choice = "Code"
+        else:
+            parameters = {
+                "type": "object",
+                "properties": {
+                    "answer": {
+                        "type": "integer",
+                        "description": "The final answer to the problem."
+                    }
+                },
+                "required": ["answer"],
+                "additionalProperties": False
+            }
+            tool_choice = "Answer"
+
+        tool = {
             "type": "function",
             "function": {
                 "name": "Answer",
                 "description": "Return the answer to the math problem.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "answer": {
-                            "type": "integer",
-                            "description": "The final answer to the problem."
-                        }
-                    },
-                    "required": ["answer"],
-                    "additionalProperties": False
-                }
+                "parameters": parameters
             }
         }
 
-    def solve(self, problem: str) -> int:
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
                 {
                     "role": "system",
-                    "content": "You are solving math competition problems. Respond only with the final answer (an integer), no explanation in JSON format.",
+                    "content": "You are solving a logical task. Respond only with the final answer (a number or code), no explanation.",
                 },
                 {
                     "role": "user",
                     "content": problem,
                 },
             ],
-            tools=[self.tool],
-            tool_choice={"type": "function", "function": {"name": "Answer"}}
+            tools=[tool],
+            tool_choice={"type": "function", "function": {"name": tool_choice}}
         )
 
         arguments_str = response.choices[0].message.tool_calls[0].function.arguments
-        parsed = Answer.model_validate_json(arguments_str)
+        if coding:
+            parsed = Code.model_validate_json(arguments_str)
+        else:
+            parsed = Answer.model_validate_json(arguments_str)
         return parsed.answer
 
 

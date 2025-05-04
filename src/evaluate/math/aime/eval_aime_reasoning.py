@@ -14,6 +14,22 @@ from agents.reasoning.crewai_agent import CrewAIAgent
 from agents.reasoning.autogen_agent import AutoGenAgent
 from agents.reasoning.direct_call import BaselineLLMAgent
 
+ONE_SHOT_PROMPT = "Given the following problem, please tackle the problem step by step"
+
+PLANNING_PROMPT = (
+    "Given the following problem, please formulate an approach "
+    "to the problem. - Do NOT solve it yet, "
+    "just come up with a plan"
+)
+REFLECT_PROMPT = (
+    "Great, now that you've written up a plan, I want you to "
+    "carefully reflect on it. It's VERY important that you get "
+    "it right. Please reconsider all of your steps and aim to correct "
+    "any mistakes. These problems are VERY challenging, and it's very "
+    "likely that you made a mistake somewhere."
+)
+EXECUTE_PROMPT = "Great, now given you plan, please solve the problem."
+
 def extract_json_only(raw_response: str) -> str:
     match = re.search(r"```json\s*(.*?)```", raw_response, re.DOTALL | re.IGNORECASE)
     return match.group(1).strip() if match else raw_response.strip()
@@ -27,27 +43,16 @@ def evaluate_agent(agent: Agent, dataset, n_problems=10, reasoning_steps: int=1)
         problem = item["Problem"]
         solution = item["Answer"]
         system_prompt = "You are an agent specialized in solving math competition problems."
-        one_shot_prompt = f"Given the following problem, please tackle the problem step by step. Problem: {problem}"
-        planning_prompt = (
-            "Given the following problem, please formulate an approach "
-            f"to the problem. Problem: {problem} - Do NOT solve it yet, "
-            "just come up with a plan"
-        )
-        reflect_prompt = (
-            "Great, now that you've written up a plan, I want you to "
-            "carefully reflect on it. It's VERY important that you get "
-            "it right. Please reconsider all of your steps and aim to correct "
-            "any mistakes. These problems are VERY challenging, and it's very "
-            "likely that you made a mistake somewhere."
-        )
-        execute_prompt = "Great, now given you plan, please solve the problem."
-
+    
         if reasoning_steps == 1:
+            one_shot_prompt = ONE_SHOT_PROMPT + f"Problem: {problem}"
             prompt = [one_shot_prompt]
         elif reasoning_steps == 2:
-            prompt = [planning_prompt, execute_prompt]
+            planning_prompt = PLANNING_PROMPT + f"Problem: {problem}"
+            prompt = [planning_prompt, EXECUTE_PROMPT]
         elif reasoning_steps == 3:
-            prompt = [planning_prompt, reflect_prompt, execute_prompt]
+            planning_prompt = PLANNING_PROMPT + f"Problem: {problem}"
+            prompt = [planning_prompt, REFLECT_PROMPT, EXECUTE_PROMPT]
 
         response = agent.solve(system_prompt, prompts=prompt)
 

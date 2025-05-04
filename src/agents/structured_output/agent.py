@@ -9,7 +9,7 @@ class Agent(ABC):
         pass
 
     @abstractmethod
-    def solve(self, problem: str) -> str:
+    def solve(self, problem: str, coding=False) -> str:
         """
         Solve a given task.
         """

@@ -1,10 +1,12 @@
 from crewai import Agent, Task, Crew, LLM
 from pydantic import BaseModel, Field
 
-from agents.structured_output.agent import Agent
 
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
+
+class Code(BaseModel):
+    answer: str = Field(description="The complete code implementation.")
 
 # CrewAI uses env vars for the token and endpoint
 class CrewAIAgent:
@@ -14,29 +16,34 @@ class CrewAIAgent:
             model=f"azure/{model}"
         )
 
-        # Define the CrewAI agent
+
         self.agent = Agent(
-            role="Math Solver",
-            goal="You are solving math competition problems. Respond only with the final answer (an integer), no explanation.",
-            backstory="You are a highly trained mathematical reasoning model.",
+            role="Logic Solver",
+            goal="You are solving a logical task. Respond only with the final answer (a number or code), no explanation.",
+            backstory="You are a highly trained reasoning model.",
             verbose=False,
             allow_delegation=False,
             llm=self.llm,
             function_calling_llm=self.llm,
         )
 
-    def solve(self, problem: str) -> int:
-        # Wrap the problem in a Task
+    def solve(self, problem: str, coding=False) -> int | str:
+        if coding:
+            expected_output = "A JSON schema with the code implementation"
+            output_schema = Code
+        else:
+            expected_output="A JSON schema with the answer as an integer"
+            output_schema = Answer
+
         task = Task(
             description=(
-                f"Solve the following math problem and return only the final integer answer: {problem}"
+                f"Solve the following task and return only the final answer: {problem}"
             ),
             agent=self.agent,
-            expected_output="A JSON schema with the answer as an integer",
-            output_pydantic=Answer
+            expected_output=expected_output,
+            output_pydantic=output_schema
         )
 
-        # Create and run a Crew
         crew = Crew(
             agents=[self.agent],
             tasks=[task],
