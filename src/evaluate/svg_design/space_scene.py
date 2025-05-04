@@ -79,6 +79,9 @@ def main():
         "autogen": AutoGenAgent(),
     }
 
+    if args.reasoning == 1:
+        agents["reasoning"] = BaselineLLMAgent(model="o3-mini")
+
     for name, agent in agents.items():
         print(f"Generating Space scene with: {name}...")
 

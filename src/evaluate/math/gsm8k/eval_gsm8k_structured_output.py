@@ -66,6 +66,7 @@ def main():
 
     agents = {
         "baseline": BaselineLLMAgent(),
+        "reasoning": BaselineLLMAgent(model="o3-mini"),
         "pydantic": PydanticAgent(),
         "langchain": LangchainAgent(),
         "crewai": CrewAIAgent(),
