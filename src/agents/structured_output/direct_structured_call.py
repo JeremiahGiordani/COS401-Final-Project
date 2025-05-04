@@ -3,8 +3,10 @@ from openai import AzureOpenAI
 import env
 import json
 
+
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
+
 
 class Code(BaseModel):
     answer: str = Field(description="The complete code implementation.")
@@ -20,18 +22,17 @@ class BaselineLLMAgent:
         self.model = model
 
     def solve(self, problem: str, coding=False) -> int | str:
-
         if coding:
             parameters = {
                 "type": "object",
                 "properties": {
                     "code": {
                         "type": "integer",
-                        "description": "The complete code implementation."
+                        "description": "The complete code implementation.",
                     }
                 },
                 "required": ["code"],
-                "additionalProperties": False
+                "additionalProperties": False,
             }
             tool_choice = "Code"
         else:
@@ -40,11 +41,11 @@ class BaselineLLMAgent:
                 "properties": {
                     "answer": {
                         "type": "integer",
-                        "description": "The final answer to the problem."
+                        "description": "The final answer to the problem.",
                     }
                 },
                 "required": ["answer"],
-                "additionalProperties": False
+                "additionalProperties": False,
             }
             tool_choice = "Answer"
 
@@ -53,8 +54,8 @@ class BaselineLLMAgent:
             "function": {
                 "name": "Answer",
                 "description": "Return the answer to the math problem.",
-                "parameters": parameters
-            }
+                "parameters": parameters,
+            },
         }
 
         response = self.client.chat.completions.create(
@@ -70,7 +71,7 @@ class BaselineLLMAgent:
                 },
             ],
             tools=[tool],
-            tool_choice={"type": "function", "function": {"name": tool_choice}}
+            tool_choice={"type": "function", "function": {"name": tool_choice}},
         )
 
         arguments_str = response.choices[0].message.tool_calls[0].function.arguments

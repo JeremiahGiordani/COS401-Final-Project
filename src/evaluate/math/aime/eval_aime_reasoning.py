@@ -30,20 +30,28 @@ REFLECT_PROMPT = (
 )
 EXECUTE_PROMPT = "Great, now given you plan, please solve the problem."
 
+
 def extract_json_only(raw_response: str) -> str:
     match = re.search(r"```json\s*(.*?)```", raw_response, re.DOTALL | re.IGNORECASE)
     return match.group(1).strip() if match else raw_response.strip()
 
-def evaluate_agent(agent: Agent, dataset, n_problems=10, reasoning_steps: int=1) -> List[Dict]:
+
+def evaluate_agent(
+    agent: Agent, dataset, n_problems=10, reasoning_steps: int = 1
+) -> List[Dict]:
     results = []
-    for i, item in enumerate(tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)):
+    for i, item in enumerate(
+        tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)
+    ):
         if i >= n_problems:
             break
 
         problem = item["Problem"]
         solution = item["Answer"]
-        system_prompt = "You are an agent specialized in solving math competition problems."
-    
+        system_prompt = (
+            "You are an agent specialized in solving math competition problems."
+        )
+
         if reasoning_steps == 1:
             one_shot_prompt = ONE_SHOT_PROMPT + f"Problem: {problem}"
             prompt = [one_shot_prompt]
@@ -66,20 +74,27 @@ def evaluate_agent(agent: Agent, dataset, n_problems=10, reasoning_steps: int=1)
 
         is_correct = str(answer).strip() == str(solution).strip()
 
-        results.append({
-            "id": item["ID"],
-            "problem": problem,
-            "solution": solution,
-            "response": answer,
-            "correct": is_correct,
-        })
+        results.append(
+            {
+                "id": item["ID"],
+                "problem": problem,
+                "solution": solution,
+                "response": answer,
+                "correct": is_correct,
+            }
+        )
 
     return results
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--n", type=int, default=30, help="Number of problems to evaluate")
-    parser.add_argument("--reasoning", type=int, default=1, help="Number of reasoning steps")
+    parser.add_argument(
+        "--n", type=int, default=30, help="Number of problems to evaluate"
+    )
+    parser.add_argument(
+        "--reasoning", type=int, default=1, help="Number of reasoning steps"
+    )
     args = parser.parse_args()
 
     print("Loading AIME dataset...")
@@ -95,12 +110,16 @@ def main():
 
     for name, agent in agents.items():
         print(f"\n--- Evaluating {name} ---")
-        results = evaluate_agent(agent, dataset, n_problems=args.n, reasoning_steps=args.reasoning)
+        results = evaluate_agent(
+            agent, dataset, n_problems=args.n, reasoning_steps=args.reasoning
+        )
         accuracy = sum(r["correct"] for r in results) / len(results)
         print(f"Accuracy for {name}: {accuracy:.2%}")
 
         for r in results:
-            print(f"[{r['id']}] Correct: {r['correct']} | Response: {r['response']} | Solution: {r['solution']}")
+            print(
+                f"[{r['id']}] Correct: {r['correct']} | Response: {r['response']} | Solution: {r['solution']}"
+            )
 
 
 if __name__ == "__main__":

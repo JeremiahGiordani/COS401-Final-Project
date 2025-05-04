@@ -6,6 +6,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 import env
 import json
 
+
 class LangchainAgent:
     def __init__(self, model_name: str = "gpt-4o"):
         self.llm = AzureChatOpenAI(
@@ -16,11 +17,9 @@ class LangchainAgent:
             api_version=env.API_VERSION,
         )
 
-        self.prompt = ChatPromptTemplate.from_messages([
-            ("system", "{system_prompt}"),
-            ("human", "{user_prompt}")
-        ])
-
+        self.prompt = ChatPromptTemplate.from_messages(
+            [("system", "{system_prompt}"), ("human", "{user_prompt}")]
+        )
 
     def solve(self, system_prompt: str, prompts: list[str]) -> str:
         messages = [{"role": "system", "content": system_prompt}]
@@ -33,12 +32,13 @@ class LangchainAgent:
 
         return response
 
+
 if __name__ == "__main__":
     agent = LangchainAgent()
     problem = "If x/4 = 2, what is x?"
     prompts = [
         f"Can you give me a hint to this problem: {problem}",
-        f"Sorry, can you clarify?"
+        f"Sorry, can you clarify?",
     ]
     system_prompt = "You are a helpful assistant"
     result = agent.solve(system_prompt=system_prompt, prompts=prompts)

@@ -26,6 +26,10 @@ dependencies = [
 [tool.setuptools.packages.find]
 where = ["src"]
 
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.8"
+
 [build-system]
 requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"

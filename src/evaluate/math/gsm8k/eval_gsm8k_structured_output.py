@@ -25,7 +25,9 @@ def extract_gsm8k_answer(answer_text: str) -> str:
 
 def evaluate_agent(agent: Agent, dataset, n_problems=10) -> List[Dict]:
     results = []
-    for i, item in enumerate(tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)):
+    for i, item in enumerate(
+        tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)
+    ):
         if i >= n_problems:
             break
 
@@ -39,20 +41,24 @@ def evaluate_agent(agent: Agent, dataset, n_problems=10) -> List[Dict]:
             response = f"ERROR: {e}"
             is_correct = False
 
-        results.append({
-            "id": f"gsm8k-{i+1}",
-            "problem": problem,
-            "solution": solution,
-            "response": response,
-            "correct": is_correct,
-        })
+        results.append(
+            {
+                "id": f"gsm8k-{i + 1}",
+                "problem": problem,
+                "solution": solution,
+                "response": response,
+                "correct": is_correct,
+            }
+        )
 
     return results
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--n", type=int, default=30, help="Number of problems to evaluate")
+    parser.add_argument(
+        "--n", type=int, default=30, help="Number of problems to evaluate"
+    )
     args = parser.parse_args()
 
     print("Loading GSM8K dataset...")
@@ -73,7 +79,9 @@ def main():
         print(f"Accuracy for {name}: {accuracy:.2%}")
 
         for r in results:
-            print(f"[{r['id']}] Correct: {r['correct']} | Response: {r['response']} | Solution: {r['solution']}")
+            print(
+                f"[{r['id']}] Correct: {r['correct']} | Response: {r['response']} | Solution: {r['solution']}"
+            )
 
 
 if __name__ == "__main__":

@@ -5,17 +5,15 @@ from pydantic import BaseModel, Field
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
 
+
 class Code(BaseModel):
     answer: str = Field(description="The complete code implementation.")
+
 
 # CrewAI uses env vars for the token and endpoint
 class CrewAIAgent:
     def __init__(self, model: str = "gpt-4o"):
-
-        self.llm = LLM(
-            model=f"azure/{model}"
-        )
-
+        self.llm = LLM(model=f"azure/{model}")
 
         self.agent = Agent(
             role="Logic Solver",
@@ -32,7 +30,7 @@ class CrewAIAgent:
             expected_output = "A JSON schema with the code implementation"
             output_schema = Code
         else:
-            expected_output="A JSON schema with the answer as an integer"
+            expected_output = "A JSON schema with the answer as an integer"
             output_schema = Answer
 
         task = Task(
@@ -41,7 +39,7 @@ class CrewAIAgent:
             ),
             agent=self.agent,
             expected_output=expected_output,
-            output_pydantic=output_schema
+            output_pydantic=output_schema,
         )
 
         crew = Crew(
@@ -51,7 +49,7 @@ class CrewAIAgent:
             chat_llm=self.llm,
             manager_llm=self.llm,
             planning_llm=self.llm,
-            function_calling_llm=self.llm
+            function_calling_llm=self.llm,
         )
 
         result = crew.kickoff()

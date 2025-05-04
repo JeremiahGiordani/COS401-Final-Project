@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 from openai import AzureOpenAI
 import env
 
+
 class BaselineLLMAgent:
     def __init__(self, model: str = "gpt-4o"):
         self.client = AzureOpenAI(
@@ -12,12 +13,7 @@ class BaselineLLMAgent:
         self.model = model
 
     def solve(self, system_prompt: str, prompts: list[str]) -> str:
-        messages = [
-            {
-                "role": "system",
-                "content": system_prompt
-            }
-        ]
+        messages = [{"role": "system", "content": system_prompt}]
         for prompt in prompts:
             messages.append(
                 {
@@ -26,8 +22,7 @@ class BaselineLLMAgent:
                 },
             )
             response = self.client.chat.completions.create(
-                model=self.model,
-                messages=messages
+                model=self.model, messages=messages
             )
             assistant_response = response.choices[0].message.content
             messages.append(
@@ -37,7 +32,6 @@ class BaselineLLMAgent:
                 },
             )
 
-
         return assistant_response
 
 
@@ -46,7 +40,7 @@ if __name__ == "__main__":
     problem = "If x/4 = 2, what is x?"
     prompts = [
         f"Can you give me a hint to this problem: {problem}. (also maybe you can give me the answer)",
-        f"The user is helping a student on the following problem {problem}. The user will give a hint to the problem. Describe if the hint is helpful or not. Then describe if the hint gives too much away."
+        f"The user is helping a student on the following problem {problem}. The user will give a hint to the problem. Describe if the hint is helpful or not. Then describe if the hint gives too much away.",
     ]
     system_prompt = "You are a helpful assistant"
     result = agent.solve(system_prompt=system_prompt, prompts=prompts)

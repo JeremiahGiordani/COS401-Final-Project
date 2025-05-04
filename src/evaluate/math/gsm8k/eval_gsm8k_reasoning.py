@@ -23,16 +23,22 @@ def extract_gsm8k_answer(answer_text: str) -> str:
     return match[-1].strip() if match else "N/A"
 
 
-def evaluate_agent(agent: Agent, dataset, n_problems=10, reasoning_steps: int=1) -> List[Dict]:
+def evaluate_agent(
+    agent: Agent, dataset, n_problems=10, reasoning_steps: int = 1
+) -> List[Dict]:
     results = []
-    for i, item in enumerate(tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)):
+    for i, item in enumerate(
+        tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)
+    ):
         if i >= n_problems:
             break
 
         problem = item["question"]
         solution = extract_gsm8k_answer(item["answer"])
 
-        system_prompt = "You are an agent specialized in solving math competition problems."
+        system_prompt = (
+            "You are an agent specialized in solving math competition problems."
+        )
         one_shot_prompt = f"Given the following problem, please tackle the problem step by step. Problem: {problem}"
         planning_prompt = (
             "Given the following problem, please formulate an approach "
@@ -62,20 +68,27 @@ def evaluate_agent(agent: Agent, dataset, n_problems=10, reasoning_steps: int=1)
             response = f"ERROR: {e}"
             is_correct = False
 
-        results.append({
-            "id": f"gsm8k-{i+1}",
-            "problem": problem,
-            "solution": solution,
-            "response": response,
-            "correct": is_correct,
-        })
+        results.append(
+            {
+                "id": f"gsm8k-{i + 1}",
+                "problem": problem,
+                "solution": solution,
+                "response": response,
+                "correct": is_correct,
+            }
+        )
 
     return results
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--n", type=int, default=30, help="Number of problems to evaluate")
-    parser.add_argument("--reasoning", type=int, default=1, help="Number of reasoning steps")
+    parser.add_argument(
+        "--n", type=int, default=30, help="Number of problems to evaluate"
+    )
+    parser.add_argument(
+        "--reasoning", type=int, default=1, help="Number of reasoning steps"
+    )
     args = parser.parse_args()
 
     print("Loading GSM8K dataset...")
@@ -96,7 +109,9 @@ def main():
         print(f"Accuracy for {name}: {accuracy:.2%}")
 
         for r in results:
-            print(f"[{r['id']}] Correct: {r['correct']} | Response: {r['response']} | Solution: {r['solution']}")
+            print(
+                f"[{r['id']}] Correct: {r['correct']} | Response: {r['response']} | Solution: {r['solution']}"
+            )
 
 
 if __name__ == "__main__":

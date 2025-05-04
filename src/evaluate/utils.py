@@ -2,6 +2,7 @@ from openai import AzureOpenAI
 import env
 import json
 
+
 def extract_answer(agent_response):
     client = AzureOpenAI(
         api_key=env.API_KEY,
@@ -18,16 +19,16 @@ def extract_answer(agent_response):
                 "properties": {
                     "answer": {
                         "type": "integer",
-                        "description": "The final answer to the problem."
+                        "description": "The final answer to the problem.",
                     }
                 },
                 "required": ["answer"],
-                "additionalProperties": False
-            }
-        }
+                "additionalProperties": False,
+            },
+        },
     }
     response = client.chat.completions.create(
-        model='gpt-4o',
+        model="gpt-4o",
         messages=[
             {
                 "role": "system",
@@ -39,7 +40,7 @@ def extract_answer(agent_response):
             },
         ],
         tools=[tool],
-        tool_choice={"type": "function", "function": {"name": "Answer"}}
+        tool_choice={"type": "function", "function": {"name": "Answer"}},
     )
     arguments_str = response.choices[0].message.tool_calls[0].function.arguments
     return json.loads(arguments_str)["answer"]

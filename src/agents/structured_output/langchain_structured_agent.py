@@ -10,8 +10,10 @@ import json
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
 
+
 class Code(BaseModel):
     answer: str = Field(description="The complete code implementation.")
+
 
 class LangchainAgent:
     def __init__(self, model_name: str = "gpt-4o"):
@@ -23,11 +25,15 @@ class LangchainAgent:
             api_version=env.API_VERSION,
         )
 
-        self.prompt = ChatPromptTemplate.from_messages([
-            ("system", "You are solving a logical task. Respond only with the final answer (a number or code), no explanation."),
-            ("human", "{problem}")
-        ])
-
+        self.prompt = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system",
+                    "You are solving a logical task. Respond only with the final answer (a number or code), no explanation.",
+                ),
+                ("human", "{problem}"),
+            ]
+        )
 
     def solve(self, problem: str, coding=False) -> int | str:
         if coding:
@@ -40,6 +46,7 @@ class LangchainAgent:
         result = structured_llm.invoke(messages)
         result = result.tool_calls[0]["args"]
         return result["answer"]
+
 
 if __name__ == "__main__":
     agent = LangchainAgent()

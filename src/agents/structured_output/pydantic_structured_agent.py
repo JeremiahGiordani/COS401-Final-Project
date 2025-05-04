@@ -5,18 +5,21 @@ from pydantic_ai.providers.openai import OpenAIProvider
 import env
 from openai import AsyncAzureOpenAI
 
+
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem")
 
+
 class Code(BaseModel):
     answer: str = Field(description="The complete code implementation.")
+
 
 class PydanticAgent:
     def __init__(self, model: str = "gpt-4o"):
         client = AsyncAzureOpenAI(
             azure_endpoint=env.BASE_URL,
             api_version=env.API_VERSION,
-            api_key=env.API_KEY
+            api_key=env.API_KEY,
         )
         self.model = OpenAIModel(
             model,
@@ -35,6 +38,7 @@ class PydanticAgent:
         )
         response = agent.run_sync(problem)
         return response.data.answer
+
 
 if __name__ == "__main__":
     agent = PydanticAgent()

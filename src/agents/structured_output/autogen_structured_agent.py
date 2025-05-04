@@ -5,11 +5,14 @@ import env
 import asyncio
 import inspect
 
+
 class Answer(BaseModel):
     answer: int = Field(description="The answer to the math competition problem.")
 
+
 class Code(BaseModel):
     answer: str = Field(description="The complete code implementation.")
+
 
 class AutoGenAgent:
     def __init__(self, model: str = "gpt-4o"):
@@ -27,7 +30,7 @@ class AutoGenAgent:
                 "name": "Code",
                 "description": "Return the code implementation",
                 "parameters": parameters,
-                "strict": True
+                "strict": True,
             }
         else:
             parameters = Code.model_json_schema()
@@ -35,17 +38,19 @@ class AutoGenAgent:
                 "name": "Answer",
                 "description": "Return the answer to the math problem",
                 "parameters": parameters,
-                "strict": True
+                "strict": True,
             }
         parameters["additionalProperties"] = False
 
         response = await self.agent.create(
             messages=[
-                SystemMessage(content="You are solving a logical task. Respond only with the final answer (a number or code), no explanation."),
-                UserMessage(content=problem, source="user")
+                SystemMessage(
+                    content="You are solving a logical task. Respond only with the final answer (a number or code), no explanation."
+                ),
+                UserMessage(content=problem, source="user"),
             ],
             tools=[tool],
-            extra_create_args={"tool_choice": "required"}
+            extra_create_args={"tool_choice": "required"},
         )
         print(response)
 
@@ -63,6 +68,7 @@ class AutoGenAgent:
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
         return loop.run_until_complete(self._solve_async(problem, coding=coding))
+
 
 if __name__ == "__main__":
     agent = AutoGenAgent()

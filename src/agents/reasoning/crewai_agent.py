@@ -3,10 +3,11 @@ from crewai import Agent, Task, Crew, LLM
 
 # CrewAI uses env vars for the token and endpoint
 class CrewAIAgent:
-    def __init__(self, model: str = "gpt-4o",):
-        self.llm = LLM(
-            model=f"azure/{model}"
-        )
+    def __init__(
+        self,
+        model: str = "gpt-4o",
+    ):
+        self.llm = LLM(model=f"azure/{model}")
 
     def solve(self, system_prompt: str, prompts: list[str]) -> str:
         agent = Agent(
@@ -48,7 +49,7 @@ if __name__ == "__main__":
     problem = "If x/4 = 2, what is x?"
     prompts = [
         f"Can you give me a hint to this problem: {problem}",
-        f"Sorry, can you clarify? Can you walk me through with more clear steps. Give me a list"
+        f"Sorry, can you clarify? Can you walk me through with more clear steps. Give me a list",
     ]
     system_prompt = "You are a helpful assistant"
     result = agent.solve(system_prompt=system_prompt, prompts=prompts)

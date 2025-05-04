@@ -15,7 +15,9 @@ from agents.structured_output.direct_structured_call import BaselineLLMAgent
 
 def evaluate_agent(agent: Agent, dataset, n_problems=10) -> List[Dict]:
     results = []
-    for i, item in enumerate(tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)):
+    for i, item in enumerate(
+        tqdm(dataset, desc=f"Evaluating {agent.__class__.__name__}", total=n_problems)
+    ):
         if i >= n_problems:
             break
 
@@ -25,19 +27,24 @@ def evaluate_agent(agent: Agent, dataset, n_problems=10) -> List[Dict]:
         response = agent.solve(problem)
         is_correct = str(response).strip() == str(solution).strip()
 
-        results.append({
-            "id": item["ID"],
-            "problem": problem,
-            "solution": solution,
-            "response": response,
-            "correct": is_correct,
-        })
+        results.append(
+            {
+                "id": item["ID"],
+                "problem": problem,
+                "solution": solution,
+                "response": response,
+                "correct": is_correct,
+            }
+        )
 
     return results
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--n", type=int, default=30, help="Number of problems to evaluate")
+    parser.add_argument(
+        "--n", type=int, default=30, help="Number of problems to evaluate"
+    )
     args = parser.parse_args()
 
     print("Loading AIME dataset...")

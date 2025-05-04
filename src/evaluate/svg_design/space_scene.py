@@ -28,21 +28,16 @@ code_prompt = (
     "Only output the HTML code — no commentary or Markdown formatting."
 )
 
-reflect_prompt = (
-    "Now, reflect on your plan. Do you see any problems or blind spots? Can you detail the process better?"
-)
+reflect_prompt = "Now, reflect on your plan. Do you see any problems or blind spots? Can you detail the process better?"
 
 
 svg_space_oneshot_prompt = (
     "You are participating in a space-rendering competition. "
     "Your task is to create a scene of outer space using only inline SVG, embedded inside a complete HTML file.\n\n"
-
     "The scene should be visually recognizable, creative, and well-structured. "
     "Use basic SVG elements such as <path>, <circle>, <rect>, <polygon>, and <line>. "
     "You may also use gradients, stroke styles, transformations, and animations inside the <svg> tag.\n\n"
-
     "Do not use any external images, CSS files, or JavaScript. All styling must be inside the SVG element.\n\n"
-
     "Your output must be a **fully self-contained HTML file** beginning with <!DOCTYPE html>, and the space scene must be rendered using a single inline <svg> block within the <body>. "
     "Do not include any explanations, Markdown formatting, or comments — only output the raw HTML file."
 )
@@ -54,13 +49,17 @@ THREE_STEP_PROMPTS = [reasoning_prompt, reflect_prompt, code_prompt]
 
 OUTPUT_DIR = "../outputs/svg_outputs/"
 
+
 def extract_html_only(raw_response: str) -> str:
     match = re.search(r"```html\s*(.*?)```", raw_response, re.DOTALL | re.IGNORECASE)
     return match.group(1).strip() if match else raw_response.strip()
 
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--reasoning", type=int, default=1, help="Number of reasoning steps")
+    parser.add_argument(
+        "--reasoning", type=int, default=1, help="Number of reasoning steps"
+    )
     args = parser.parse_args()
 
     if args.reasoning == 1:
@@ -85,11 +84,11 @@ def main():
 
         try:
             if args.reasoning == 1:
-                prompts=ONE_STEP_PROMPT
+                prompts = ONE_STEP_PROMPT
             elif args.reasoning == 2:
-                prompts=TWO_STEP_PROMPTS
+                prompts = TWO_STEP_PROMPTS
             else:
-                prompts=THREE_STEP_PROMPTS
+                prompts = THREE_STEP_PROMPTS
 
             html = agent.solve(system_prompt=system_prompt, prompts=prompts)
             html = extract_html_only(html)
@@ -105,6 +104,7 @@ def main():
 
         except Exception as e:
             print(f"Error generating space for {name}: {e}")
+
 
 if __name__ == "__main__":
     main()
