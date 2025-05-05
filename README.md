@@ -5,6 +5,8 @@ Welcome to the Agent Evals repo.
 This repo contains the source code for the paper:  
 **"Deliberate Thought in LLMs: A Study of Reasoning Depth Across Tasks and Frameworks"**
 
+The full paper is available as a PDF [here](./Agentic-Reasoning.pdf)
+
 The main objective of this project is to evaluate various agentic frameworks with different degrees of multi-step reasoning to understand their impact on performance across tasks.
 
 We evaluate three task types:
